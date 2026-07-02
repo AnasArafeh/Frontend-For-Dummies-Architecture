@@ -10,7 +10,7 @@ The key difference from React (CSR): the **Page is a server component** that can
 |---|---|---|
 | **Page** (server component) | [`device-dashboard.page.tsx`](./src/app/(modules)/device-dashboard/device-dashboard.page.tsx) | `async` — fetches data server-side, passes as `initialData` |
 | **Section** (client) | [`dashboard-overview.section.tsx`](./src/app/(modules)/device-dashboard/sections/dashboard-overview/dashboard-overview.section.tsx) | `"use client"` — skips fetch if SSR data present |
-| **Reducer + Provider** | [`dashboard-overview.reducer.tsx`](./src/app/(modules)/device-dashboard/sections/dashboard-overview/dashboard-overview.reducer.tsx) | Accepts `initialData` for SSR hydration |
+| **Reducer + Provider** | [`dashboard-overview.reducer.tsx`](./src/app/(modules)/device-dashboard/sections/dashboard-overview/state-management/dashboard-overview.reducer.tsx) | Accepts `initialData` for SSR hydration |
 | **Area** (client) | [`device-table.area.tsx`](./src/app/(modules)/device-dashboard/sections/dashboard-overview/areas/device-table/device-table.area.tsx) | `"use client"` — business logic, API calls |
 | **Delegate Component** | [`device-table-actions.delegate.tsx`](./src/app/(modules)/device-dashboard/sections/dashboard-overview/areas/device-table/delegate-components/device-table-actions.delegate.tsx) | Receives row data as props |
 

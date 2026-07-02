@@ -4,7 +4,7 @@
 // Subscribes to Section context — NO props from parent.
 
 import { BaseBox } from '@/app/theme/components/base-box';
-import { useDashboardOverview } from '../../dashboard-overview.reducer';
+import { useDashboardOverview } from '../../state-management/dashboard-overview.reducer';
 
 export function DeviceStatsArea() {
   const { state } = useDashboardOverview();

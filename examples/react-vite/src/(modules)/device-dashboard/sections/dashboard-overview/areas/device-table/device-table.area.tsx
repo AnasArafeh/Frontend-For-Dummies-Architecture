@@ -4,7 +4,7 @@
 // CAN call its own specific APIs (e.g., updating a device status).
 
 import { BaseBox } from '@/theme/components/base-box';
-import { useDashboardOverview } from '../dashboard-overview.reducer';
+import { useDashboardOverview } from '../state-management/dashboard-overview.reducer';
 import { updateDeviceStatus } from '@/services/devices/devices.api';
 import { Device } from '../../../../models/device.models';
 import { DeviceTableActions } from './delegate-components/device-table-actions.delegate';

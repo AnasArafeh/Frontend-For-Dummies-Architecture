@@ -6,7 +6,7 @@
 
 import { BaseBox } from '@/app/theme/components/base-box';
 import { DashboardOverview } from './sections/dashboard-overview/dashboard-overview.section';
-import { DashboardOverviewProvider } from './sections/dashboard-overview/dashboard-overview.reducer';
+import { DashboardOverviewProvider } from './sections/dashboard-overview/state-management/dashboard-overview.reducer';
 import { fetchDevices } from '@/app/services/devices/devices.api';
 
 export default async function DeviceDashboardPage() {

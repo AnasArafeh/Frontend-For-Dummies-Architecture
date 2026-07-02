@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { BaseBox } from '@/app/theme/components/base-box';
 import { fetchDevices } from '@/app/services/devices/devices.api';
 import { Device } from '../../models/device.models';
-import { useDashboardOverview } from './dashboard-overview.reducer';
+import { useDashboardOverview } from './state-management/dashboard-overview.reducer';
 import { DeviceStatsArea } from './areas/device-stats/device-stats.area';
 import { DeviceTableArea } from './areas/device-table/device-table.area';
 import { DeviceChartArea } from './areas/device-chart/device-chart.area';
