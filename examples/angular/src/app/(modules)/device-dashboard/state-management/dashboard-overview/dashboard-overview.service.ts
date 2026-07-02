@@ -1,39 +1,37 @@
-// Section state service — Angular equivalent of React Context + useReducer.
+// Section state service — Angular signal-based state (Angular 17+).
 // Each Section provides its own instance via component `providers: []`.
 // Areas inject this service to read/write state. No @Input() needed.
 
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Injectable, signal, computed } from '@angular/core';
 import { DashboardState, initialDashboardState } from './dashboard-overview.models';
 
 @Injectable()
 export class DashboardOverviewService {
-  private state = new BehaviorSubject<DashboardState>(initialDashboardState);
+  private state = signal<DashboardState>(initialDashboardState);
 
-  readonly state$: Observable<DashboardState> = this.state.asObservable();
-  readonly devices$ = this.state.pipe(map((s) => s.devices));
-  readonly stats$ = this.state.pipe(map((s) => s.stats));
-  readonly loading$ = this.state.pipe(map((s) => s.loading));
-  readonly error$ = this.state.pipe(map((s) => s.error));
-
-  // Key/value patch — same pattern as React reducer
-  private patch(partial: Partial<DashboardState>): void {
-    this.state.next({ ...this.state.value, ...partial });
-  }
+  readonly devices = computed(() => this.state().devices);
+  readonly stats = computed(() => this.state().stats);
+  readonly loading = computed(() => this.state().loading);
+  readonly error = computed(() => this.state().error);
 
   setDevices(data: DashboardState['devices']): void {
-    this.patch({ devices: data });
+    this.state.update((s) => ({ ...s, devices: data }));
   }
 
   setStats(data: DashboardState['stats']): void {
-    this.patch({ stats: data });
+    this.state.update((s) => ({ ...s, stats: data }));
   }
 
   setLoading(data: DashboardState['loading']): void {
-    this.patch({ loading: data });
+    this.state.update((s) => ({ ...s, loading: data }));
   }
 
   setError(data: DashboardState['error']): void {
-    this.patch({ error: data });
+    this.state.update((s) => ({ ...s, error: data }));
+  }
+
+  // Direct state access for Areas that need the full state
+  getState(): DashboardState {
+    return this.state();
   }
 }

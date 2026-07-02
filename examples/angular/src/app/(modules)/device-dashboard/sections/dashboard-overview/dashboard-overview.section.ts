@@ -2,7 +2,6 @@
 // Provides the state service at this level so Areas can inject it.
 
 import { Component, OnInit } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
 import { DashboardOverviewService } from '../../state-management/dashboard-overview/dashboard-overview.service';
 import { DevicesApiService } from '@/app/services/devices/devices.api';
 import { DeviceStatsArea } from './areas/device-stats/device-stats.area';
@@ -11,23 +10,17 @@ import { DeviceTableArea } from './areas/device-table/device-table.area';
 @Component({
   selector: 'app-dashboard-overview',
   standalone: true,
-  imports: [AsyncPipe, DeviceStatsArea, DeviceTableArea],
+  imports: [DeviceStatsArea, DeviceTableArea],
   providers: [DashboardOverviewService],
   template: `
-    <ng-container *ngIf="service.loading$ | async; else loaded">
+    @if (service.loading()) {
       Loading...
-    </ng-container>
-
-    <ng-template #loaded>
-      <ng-container *ngIf="service.error$ | async as error; else content">
-        Error: {{ error }}
-      </ng-container>
-
-      <ng-template #content>
-        <app-device-stats-area />
-        <app-device-table-area />
-      </ng-template>
-    </ng-template>
+    } @else if (service.error()) {
+      Error: {{ service.error() }}
+    } @else {
+      <app-device-stats-area />
+      <app-device-table-area />
+    }
   `,
 })
 export class DashboardOverviewSection implements OnInit {
