@@ -14,7 +14,7 @@ Every frontend team I've worked with eventually hits the same wall. The app grow
 
 If you've asked any of these questions, your architecture failed you. Not because your developers are bad. Because your architecture never told them where things go.
 
-I've spent years refining a solution. I call it **FFD — Frontend For Dummies.** Not because it's for dummies. Because it's simple enough that anyone can understand it by looking at a screen.
+I've spent years refining a solution. I call it **FFD — Frontend For Dummies.** Not because it's for dummies — or maybe it is. Because it's simple enough that anyone can understand it by looking at a screen.
 
 ---
 
