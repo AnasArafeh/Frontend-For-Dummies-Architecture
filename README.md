@@ -195,27 +195,42 @@ export default function DeviceDashboardPage() {
 
 ```
 (modules)/device-dashboard/
-├── device-dashboard.layout.tsx          → (optional) Module-level layout
-├── device-dashboard.page.tsx            → Page (required) — Section container
+├── device-dashboard.layout.tsx              → (optional) Module-level layout
+├── device-dashboard.layout.scss             → (optional) Layout styles, next to layout file
+├── device-dashboard.page.tsx                → Page (required) — Section container
+├── device-dashboard.page.scss               → (optional) Page styles, next to page file
+├── device-dashboard.page.models.ts          → (optional) Page-specific models
 ├── sections/
 │   └── dashboard-overview/
-│       ├── dashboard-overview.section.tsx   → Section — Area container + state provider
+│       ├── dashboard-overview.section.tsx       → Section — Area container + state provider
+│       ├── dashboard-overview.section.scss      → (optional) Section styles
+│       ├── dashboard-overview.section.models.ts → (optional) Section-specific models
+│       ├── state-management/
+│       │   ├── dashboard-overview.actions.ts
+│       │   └── dashboard-overview.reducer.tsx
 │       ├── delegate-components/
 │       ├── components/
 │       └── areas/
 │           ├── device-stats/
 │           │   ├── device-stats.area.tsx
+│           │   ├── device-stats.area.scss        → (optional) Area styles
+│           │   ├── device-stats.area.models.ts   → (optional) Area-specific models
 │           │   ├── segments/
 │           │   ├── delegate-components/
 │           │   └── components/
 │           ├── device-table/
 │           │   ├── device-table.area.tsx
+│           │   ├── device-table.area.scss
 │           │   └── delegate-components/
 │           └── device-chart/
-│               └── device-chart.area.tsx
-├── models/                               → Module-specific models
-├── helpers/                              → Module-specific utilities
-├── store/                                → Module-level constants
+│               ├── device-chart.area.tsx
+│               └── device-chart.area.scss
+├── models/                                   → Module-level shared models
+├── helpers/                                  → Module-specific utilities
+├── store/                                    → Module-level constants
+├── delegate-components/                      → Module-level delegate components
+└── components/                               → Module-level private components
+```
 ├── delegate-components/                  → Module-level delegate components
 └── components/                           → Module-level private components
 ```
@@ -363,7 +378,18 @@ Every architectural layer file **MUST** end with its layer type. Pick **one** se
 | API | `<domain>-api.ts` | `users-api.ts`, `orders-api.ts` |
 | Helper | `<name>-helper.ts` | `date-helper.ts` |
 
-Folders: kebab-case. A reviewer sees `device-stats.area.tsx` and knows instantly: *Area = business logic. No props. Can call APIs.*
+Folders: kebab-case.
+
+**Co-located files** (styles, page-specific models) sit next to their layer file, sharing the same name prefix:
+```
+device-dashboard.page.tsx
+device-dashboard.page.scss          ← next to page, not in a subfolder
+device-dashboard.page.models.ts     ← page-specific models, not in models/
+device-stats.area.tsx
+device-stats.area.scss              ← next to area, not in a subfolder
+```
+
+A reviewer sees `device-stats.area.tsx` and knows instantly: *Area = business logic. No props. Can call APIs.*
 
 ---
 
