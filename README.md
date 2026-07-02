@@ -423,6 +423,12 @@ Each demonstrates the full hierarchy, a Delegate Component (table with injectabl
 
 ---
 
+---
+
+*Frontend architecture, React project structure, Next.js folder structure, Angular architecture pattern, scalable frontend design, modular component architecture, frontend code organization, enterprise frontend best practices, framework-agnostic design system, bulletproof-react alternative, clean architecture frontend, frontend for dummies.*
+
+---
+
 ## License
 
 MIT
