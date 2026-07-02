@@ -113,6 +113,7 @@ Area → Segment   ❌ No props (use context/store)
 
 Delegate Comp    ✅ Props (they're injectable)
 Theme Comp       ✅ Props (they're regular components)
+Shared Comp      ✅ Props (they're regular components)
 ```
 
 This rule exists because **if you give developers the option to use props between layers, they will.** And suddenly you have two competing patterns: props here, context there, nobody knows which to use when. One rule. No exceptions. State flows through context — always.
