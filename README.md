@@ -1,4 +1,4 @@
-# FFD — Frontend For Dummies
+# FFD — Frontend For Dummies Architecture
 
 > [!NOTE]
 > **The sample code in this repo is AI-generated.** It demonstrates architectural patterns and structure, but is not guaranteed to be 100% accurate or production-ready. Use it as a reference for the FFD architecture, not as runnable application code.
