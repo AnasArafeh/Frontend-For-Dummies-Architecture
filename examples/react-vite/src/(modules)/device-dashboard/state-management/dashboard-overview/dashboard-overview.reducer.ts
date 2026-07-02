@@ -1,7 +1,7 @@
 // Reducer + ContextCreator → exports Context and Provider
 
 import { ContextCreator } from '@/state-management/context-creator';
-import { DashboardActionType, DashboardOverviewState, DashboardOverviewContext } from './dashboard-overview.models';
+import { DashboardActionType, DashboardOverviewState } from './dashboard-overview.models';
 import { dashboardActions } from './dashboard-overview.actions';
 
 const initialState: DashboardOverviewState = {
@@ -21,26 +21,12 @@ function dashboardReducer(state: DashboardOverviewState, action: { type: Dashboa
       return { ...state, loading: action.payload };
     case DashboardActionType.SET_ERROR:
       return { ...state, error: action.payload };
-    case DashboardActionType.UPDATE_DEVICE_STATUS:
-      return {
-        ...state,
-        devices: state.devices.map((d) =>
-          d.id === action.payload.id ? { ...d, status: action.payload.status } : d
-        ),
-      };
     default:
       return state;
   }
 }
 
-const { Context, Provider } = ContextCreator<DashboardOverviewState, ReturnType<typeof dashboardActions>>(
-  dashboardReducer,
-  dashboardActions,
-  initialState
-);
+const { Context, Provider } = ContextCreator(dashboardReducer, dashboardActions, initialState);
 
 export const DashboardOverviewContext = Context;
 export const DashboardOverviewProvider = Provider;
-
-// Convenience hook for Areas
-export { useDashboardOverview } from './use-dashboard-overview.hook';

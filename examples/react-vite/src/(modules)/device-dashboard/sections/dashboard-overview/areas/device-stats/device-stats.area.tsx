@@ -1,23 +1,17 @@
-// Area: Business logic for displaying device statistics.
-// Subscribes to Section context — NO props from parent.
-// Can make its own API calls if needed.
+// Area: Business logic. Subscribes to Section context — NO props from parent.
 
+import { useContext } from 'react';
 import { BaseBox } from '@/theme/components/base-box';
-import { useDashboardOverview } from '../../../state-management/dashboard-overview/dashboard-overview.reducer';
+import { DashboardOverviewContext } from '../../../../state-management/dashboard-overview/dashboard-overview.reducer';
 
 export function DeviceStatsArea() {
-  const { state } = useDashboardOverview();
-
+  const { state } = useContext(DashboardOverviewContext);
   if (!state.stats) return null;
 
   return (
     <BaseBox>
-      <h3>Device Overview</h3>
-      <p>Total: {state.stats.total}</p>
-      <p>Online: {state.stats.online}</p>
-      <p>Offline: {state.stats.offline}</p>
-      <p>Warnings: {state.stats.warnings}</p>
-      <p>Avg Battery: {state.stats.averageBattery.toFixed(1)}%</p>
+      <h3>Stats</h3>
+      <p>Total: {state.stats.total} | Online: {state.stats.online}</p>
     </BaseBox>
   );
 }

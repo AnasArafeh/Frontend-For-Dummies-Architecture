@@ -43,5 +43,3 @@ const { Context, Provider } = ContextCreator<DashboardOverviewState, ReturnType<
 
 export const DashboardOverviewContext = Context;
 export const DashboardOverviewProvider = Provider;
-
-export { useDashboardOverview } from './use-dashboard-overview.hook';
