@@ -92,13 +92,13 @@ Entities on the same level **never reference each other.** A module cannot impor
 
 This single rule changes everything about code review. When you see a PR touch files inside `(modules)/dashboard/`, you know with **near certainty** that only the Dashboard module is affected.
 
-### 2. Duplicate by Default
+### 2. Duplicate by Default, Share With Purpose
 
-When two modules need a similar component, **duplicate it.** Don't abstract it.
+FFD doesn't ban sharing. It has dedicated folders for it — `theme/`, `components/`, `helpers/`, and `services/` are all meant to be shared. But when it comes to **module-specific code**, the default is duplication over premature abstraction.
 
-This is the most controversial rule. Every architecture preaches reuse. FFD preaches isolation.
+Think of it this way: share what's genuinely universal (theme wrappers, API clients, utility functions). Duplicate what's specific to a feature (a dashboard card, a user table, a checkout form). If the same component proves stable across multiple modules over time, promote it to `components/`. But don't start there.
 
-Here's why:
+Here's why the default matters:
 
 **Teams have varied skill levels.** You cannot trust every developer to handle shared components correctly. When asked to add a feature, a developer's first instinct is to edit the component in front of them — not check all 15 places it's used.
 
@@ -106,7 +106,9 @@ Here's why:
 
 **Version 2.0 doesn't care about your shared code.** When Module A gets a full redesign, every shared component it uses becomes a negotiation. "We can't change this button — Module B, C, and D use it too." With duplicated code, you redesign Module A and nothing else breaks.
 
-The exception is **theme components** — BaseButton, BaseCard, BaseInput. These are always shared. They have zero business logic. They're pure UI wrappers around your component library.
+**What's always shared:** Theme components (BaseButton, BaseCard, BaseInput), global utilities in `helpers/`, and API services in `services/`. These have no business logic and don't change per module.
+
+**What you duplicate by default:** Module-specific components, section layouts, area-level widgets. Promote to `components/` only after they've proven stable across multiple modules.
 
 ### 3. No Props in the Architectural Chain
 
