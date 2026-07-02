@@ -6,7 +6,7 @@ import { Injectable, signal, computed } from '@angular/core';
 import { Device } from './dashboard-overview.models';
 
 @Injectable()
-export class DashboardOverviewService {
+export class DashboardOverviewStateManagement {
   devices = signal<Device[]>([]);
   totalDevices = computed(() => this.devices().length);
   onlineDevices = computed(() => this.devices().filter((d) => d.status === 'online').length);

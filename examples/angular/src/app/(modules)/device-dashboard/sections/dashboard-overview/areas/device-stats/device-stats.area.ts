@@ -1,7 +1,7 @@
 // Area: Business logic. Injects Section service — NO @Input() from parent.
 
 import { Component, inject } from '@angular/core';
-import { DashboardOverviewService } from '../../../../state-management/dashboard-overview/dashboard-overview.service';
+import { DashboardOverviewStateManagement } from '../../../../state-management/dashboard-overview/dashboard-overview.state-management';
 
 @Component({
   selector: 'app-device-stats-area',
@@ -9,5 +9,5 @@ import { DashboardOverviewService } from '../../../../state-management/dashboard
   templateUrl: './device-stats.area.html',
 })
 export class DeviceStatsArea {
-  dashboardOverviewStateManagement = inject(DashboardOverviewService);
+  dashboardOverviewStateManagement = inject(DashboardOverviewStateManagement);
 }

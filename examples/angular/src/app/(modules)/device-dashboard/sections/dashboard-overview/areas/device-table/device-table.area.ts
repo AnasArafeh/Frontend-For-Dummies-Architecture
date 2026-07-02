@@ -1,7 +1,7 @@
 // Area: Business logic. CAN call its own specific APIs.
 
 import { Component, inject } from '@angular/core';
-import { DashboardOverviewService } from '../../../../state-management/dashboard-overview/dashboard-overview.service';
+import { DashboardOverviewStateManagement } from '../../../../state-management/dashboard-overview/dashboard-overview.state-management';
 import { DevicesApiService } from '@/app/services/devices/devices.api';
 import { DeviceTableActions } from './delegate-components/device-table-actions.delegate';
 
@@ -12,7 +12,7 @@ import { DeviceTableActions } from './delegate-components/device-table-actions.d
   templateUrl: './device-table.area.html',
 })
 export class DeviceTableArea {
-  dashboardOverviewStateManagement = inject(DashboardOverviewService);
+  dashboardOverviewStateManagement = inject(DashboardOverviewStateManagement);
   private devicesApi = inject(DevicesApiService);
 
   onToggle(id: string): void {
