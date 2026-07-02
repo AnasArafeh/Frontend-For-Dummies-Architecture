@@ -1,0 +1,23 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-hooks"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+
+    // --- FFD Module Boundary Enforcement ---
+    // Modules cannot import from sibling modules.
+    // If you add a new module, add it to the patterns below.
+    "no-restricted-imports": ["error", {
+      "patterns": [
+        "(modules)/device-management/*",
+        "(modules)/device-verification/*"
+      ]
+    }]
+  }
+}

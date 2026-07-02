@@ -1,0 +1,11 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-restricted-imports": ["error", {
+      "patterns": [
+        "(modules)/device-management/*",
+        "(modules)/device-verification/*"
+      ]
+    }]
+  }
+}
