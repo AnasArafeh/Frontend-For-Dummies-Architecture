@@ -6,10 +6,7 @@ import { DashboardOverviewService } from '../../../../state-management/dashboard
 @Component({
   selector: 'app-device-chart-area',
   standalone: true,
-  template: `
-    <h3>Chart</h3>
-    <p>Online: {{ (service.onlineDevices() / (service.totalDevices() || 1) * 100).toFixed(0) }}%</p>
-  `,
+  templateUrl: './device-chart.area.html',
 })
 export class DeviceChartArea {
   service = inject(DashboardOverviewService);

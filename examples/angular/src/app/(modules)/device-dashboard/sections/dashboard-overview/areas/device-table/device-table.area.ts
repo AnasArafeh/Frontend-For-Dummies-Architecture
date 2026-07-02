@@ -9,22 +9,7 @@ import { DeviceTableActions } from './delegate-components/device-table-actions.d
   selector: 'app-device-table-area',
   standalone: true,
   imports: [DeviceTableActions],
-  template: `
-    <h3>Devices</h3>
-    @if (service.devices().length === 0) {
-      <p>No devices.</p>
-    } @else {
-      @for (d of service.devices(); track d.id) {
-        <p>
-          {{ d.name }} — {{ d.status }}
-          <app-device-table-actions
-            [device]="d"
-            (toggle)="onToggle($event)"
-          />
-        </p>
-      }
-    }
-  `,
+  templateUrl: './device-table.area.html',
 })
 export class DeviceTableArea {
   service = inject(DashboardOverviewService);

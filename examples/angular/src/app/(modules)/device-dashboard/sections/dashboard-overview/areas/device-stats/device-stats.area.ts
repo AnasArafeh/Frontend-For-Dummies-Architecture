@@ -6,10 +6,7 @@ import { DashboardOverviewService } from '../../../../state-management/dashboard
 @Component({
   selector: 'app-device-stats-area',
   standalone: true,
-  template: `
-    <h3>Stats</h3>
-    <p>Total: {{ service.totalDevices() }} | Online: {{ service.onlineDevices() }}</p>
-  `,
+  templateUrl: './device-stats.area.html',
 })
 export class DeviceStatsArea {
   service = inject(DashboardOverviewService);

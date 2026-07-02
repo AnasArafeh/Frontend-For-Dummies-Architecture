@@ -12,16 +12,7 @@ import { DeviceTableArea } from './areas/device-table/device-table.area';
   standalone: true,
   imports: [DeviceStatsArea, DeviceTableArea],
   providers: [DashboardOverviewService],
-  template: `
-    @if (service.loading()) {
-      Loading...
-    } @else if (service.error()) {
-      Error: {{ service.error() }}
-    } @else {
-      <app-device-stats-area />
-      <app-device-table-area />
-    }
-  `,
+  templateUrl: './dashboard-overview.section.html',
 })
 export class DashboardOverviewSection implements OnInit {
   constructor(

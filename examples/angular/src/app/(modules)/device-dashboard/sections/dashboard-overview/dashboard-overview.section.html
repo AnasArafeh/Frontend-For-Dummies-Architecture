@@ -1,0 +1,8 @@
+@if (service.loading()) {
+  Loading...
+} @else if (service.error()) {
+  Error: {{ service.error() }}
+} @else {
+  <app-device-stats-area />
+  <app-device-table-area />
+}

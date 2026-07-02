@@ -5,7 +5,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-device-table-actions',
   standalone: true,
-  template: `<button (click)="toggle.emit(device.id)">Toggle</button>`,
+  templateUrl: './device-table-actions.delegate.html',
 })
 export class DeviceTableActions {
   @Input() device!: { id: string; status: string };

@@ -8,9 +8,6 @@ import { DashboardOverviewSection } from './sections/dashboard-overview/dashboar
   selector: 'app-device-dashboard-page',
   standalone: true,
   imports: [DashboardOverviewSection],
-  template: `
-    <h1>Device Dashboard</h1>
-    <app-dashboard-overview />
-  `,
+  templateUrl: './device-dashboard.page.html',
 })
 export class DeviceDashboardPage {}
