@@ -14,18 +14,6 @@ export class DashboardOverviewService {
   loading = signal<boolean>(true);
   error = signal<string | null>(null);
 
-  setDevices(data: Device[]): void {
-    this.devices.set(data);
-  }
-
-  setLoading(data: boolean): void {
-    this.loading.set(data);
-  }
-
-  setError(data: string | null): void {
-    this.error.set(data);
-  }
-
   reset(): void {
     this.devices.set([]);
     this.loading.set(true);

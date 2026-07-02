@@ -10,12 +10,4 @@ export class SharedService {
   currentUser = signal<{ name: string } | null>(null);
   isAuthenticated = computed(() => this.currentUser() !== null);
   refresh = signal<boolean>(false);
-
-  setUser(user: { name: string } | null): void {
-    this.currentUser.set(user);
-  }
-
-  triggerRefresh(): void {
-    this.refresh.set(!this.refresh());
-  }
 }

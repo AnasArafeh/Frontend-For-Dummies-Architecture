@@ -33,11 +33,11 @@ export class DashboardOverviewSection implements OnInit {
     this.devicesApi
       .fetchDevices()
       .then((res) => {
-        this.service.setDevices(
+        this.service.devices.set(
           res.devices.map((d) => ({ id: d.id, name: d.name, status: d.status })),
         );
       })
-      .catch((err) => this.service.setError(err.message))
-      .finally(() => this.service.setLoading(false));
+      .catch((err) => this.service.error.set(err.message))
+      .finally(() => this.service.loading.set(false));
   }
 }
