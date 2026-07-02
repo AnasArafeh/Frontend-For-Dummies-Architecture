@@ -1,6 +1,6 @@
 # Frontend For Dummies: The Architecture Every Team Should Steal
 
-**By [Your Name]**
+**By Anas Arafeh**
 
 ---
 
