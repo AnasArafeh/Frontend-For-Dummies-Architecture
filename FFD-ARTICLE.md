@@ -76,12 +76,16 @@ When an Area gets too large, split it into **Segments** — mini-Areas that grou
 ### 1. Same-Level Isolation
 
 ```
-Module A  ──X──  Module B     Never
-Section X ──X──  Section Y    Never
-Area 1    ──X──  Area 2       Never
+Module A  ──X──  Module B     Never (same level)
+Section X ──X──  Section Y    Never (same level)
+Area 1    ──X──  Area 2       Never (same level)
 
-Module A  ──✓──  shared/      Allowed (higher level)
-Area      ──✓──  helpers/     Allowed (higher level)
+Module    ──✓──  (shared)/    Allowed (higher level)
+Module    ──✓──  services/    Allowed (higher level)
+Section   ──✓──  helpers/     Allowed (higher level)
+Section   ──✓──  components/  Allowed (higher level)
+Area      ──✓──  theme/       Allowed (higher level)
+Area      ──✓──  services/    Allowed (higher level)
 ```
 
 Entities on the same level **never reference each other.** A module cannot import from another module. A section cannot import from another section. You can only reach **up** — to shared resources, helpers, services, and theme components.
