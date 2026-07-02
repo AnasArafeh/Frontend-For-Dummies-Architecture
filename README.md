@@ -1,6 +1,6 @@
 # FFD — Frontend For Dummies
 
-> The architecture you can explain to a junior developer in 10 minutes by pointing at the screen.
+> The architecture you can explain to a junior developer in 10 minutes (maybe more) by pointing at the screen.
 
 FFD is a **framework-agnostic** frontend architecture. One rule: **organize your code the way the screen is organized.** Pages have sections. Sections have areas. Your code follows the same tree.
 
