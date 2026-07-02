@@ -200,14 +200,15 @@ export default function DeviceDashboardPage() {
 ├── device-dashboard.page.tsx                → Page (required) — Section container
 ├── device-dashboard.page.scss               → (optional) Page styles, next to page file
 ├── device-dashboard.page.models.ts          → (optional) Page-specific models
+├── state-management/                          → Section state (imported by Page + Section)
+│   └── dashboard-overview/
+│       ├── dashboard-overview.actions.ts
+│       └── dashboard-overview.reducer.tsx
 ├── sections/
 │   └── dashboard-overview/
-│       ├── dashboard-overview.section.tsx       → Section — Area container + state provider
+│       ├── dashboard-overview.section.tsx       → Section — Area container, consumes state
 │       ├── dashboard-overview.section.scss      → (optional) Section styles
 │       ├── dashboard-overview.section.models.ts → (optional) Section-specific models
-│       ├── state-management/
-│       │   ├── dashboard-overview.actions.ts
-│       │   └── dashboard-overview.reducer.tsx
 │       ├── delegate-components/
 │       ├── components/
 │       └── areas/

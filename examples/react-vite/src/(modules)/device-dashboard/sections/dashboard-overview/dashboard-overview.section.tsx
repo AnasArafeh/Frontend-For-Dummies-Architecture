@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { BaseBox } from '@/theme/components/base-box';
 import { fetchDevices } from '@/services/devices/devices.api';
 import { Device } from '../../models/device.models';
-import { DashboardOverviewProvider, useDashboardOverview } from './state-management/dashboard-overview.reducer';
+import { DashboardOverviewProvider, useDashboardOverview } from '../../state-management/dashboard-overview/dashboard-overview.reducer';
 import { DeviceStatsArea } from './areas/device-stats/device-stats.area';
 import { DeviceTableArea } from './areas/device-table/device-table.area';
 import { DeviceChartArea } from './areas/device-chart/device-chart.area';

@@ -4,7 +4,7 @@
 
 import { Component, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { DashboardOverviewService } from './dashboard-overview.service';
+import { DashboardOverviewService } from '../../state-management/dashboard-overview/dashboard-overview.service';
 import { DevicesApiService } from '@/app/services/devices/devices.api';
 
 @Component({

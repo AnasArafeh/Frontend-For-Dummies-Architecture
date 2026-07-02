@@ -10,7 +10,7 @@ This is a **pull-ready** example of the FFD architecture implemented with React 
 | **Section** (state provider, shared API calls) | [`dashboard-overview.section.tsx`](./src//modules)/device-dashboard/sections/dashboard-overview/dashboard-overview.section.tsx) |
 | **Area** (business logic, specific API calls) | [`device-table.area.tsx`](./src/(modules)/device-dashboard/sections/dashboard-overview/areas/device-table/device-table.area.tsx) |
 | **Delegate Component** (injectable slot) | [`device-table-actions.delegate.tsx`](./src/(modules)/device-dashboard/sections/dashboard-overview/areas/device-table/delegate-components/device-table-actions.delegate.tsx) |
-| **Section State** (context + reducer) | [`state-management/dashboard-overview.reducer.tsx`](./src/(modules)/device-dashboard/sections/dashboard-overview/state-management/dashboard-overview.reducer.tsx) | 3-file pattern in `state-management/` folder |
+| **State Management** (context + reducer) | [`state-management/dashboard-overview/`](./src/(modules)/device-dashboard/state-management/dashboard-overview/) | At module level — imported by both Page and Section |
 | **API Service** | [`devices.api.ts`](./src/services/devices/devices.api.ts) |
 | **Theme Component** | [`base-box.tsx`](./src/theme/components/base-box.tsx) |
 | **Shared Feature** | [`header.page.tsx`](./src/(shared)/header/header.page.tsx) |

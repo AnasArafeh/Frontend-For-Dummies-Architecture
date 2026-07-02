@@ -3,7 +3,7 @@
 
 import { Component, inject } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
-import { DashboardOverviewService } from '../../dashboard-overview.service';
+import { DashboardOverviewService } from '../../../state-management/dashboard-overview/dashboard-overview.service';
 
 @Component({
   selector: 'app-device-stats-area',

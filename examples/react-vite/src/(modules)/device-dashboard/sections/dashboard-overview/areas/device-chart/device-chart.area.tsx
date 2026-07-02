@@ -2,7 +2,7 @@
 // Subscribes to Section context for shared stats data.
 
 import { BaseBox } from '@/theme/components/base-box';
-import { useDashboardOverview } from '../state-management/dashboard-overview.reducer';
+import { useDashboardOverview } from '../../../state-management/dashboard-overview/dashboard-overview.reducer';
 
 export function DeviceChartArea() {
   const { state } = useDashboardOverview();

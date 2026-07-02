@@ -3,7 +3,7 @@
 // Area: Business logic for the device table. Can call its own specific APIs.
 
 import { BaseBox } from '@/app/theme/components/base-box';
-import { useDashboardOverview } from '../../state-management/dashboard-overview.reducer';
+import { useDashboardOverview } from '../../../state-management/dashboard-overview/dashboard-overview.reducer';
 import { updateDeviceStatus } from '@/app/services/devices/devices.api';
 import { Device } from '../../../../models/device.models';
 import { DeviceTableActions } from './delegate-components/device-table-actions.delegate';

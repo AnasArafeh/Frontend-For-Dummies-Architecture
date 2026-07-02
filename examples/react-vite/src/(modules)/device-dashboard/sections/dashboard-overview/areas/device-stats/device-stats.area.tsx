@@ -3,7 +3,7 @@
 // Can make its own API calls if needed.
 
 import { BaseBox } from '@/theme/components/base-box';
-import { useDashboardOverview } from '../state-management/dashboard-overview.reducer';
+import { useDashboardOverview } from '../../../state-management/dashboard-overview/dashboard-overview.reducer';
 
 export function DeviceStatsArea() {
   const { state } = useDashboardOverview();
