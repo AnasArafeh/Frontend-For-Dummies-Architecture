@@ -21,4 +21,3 @@ ignorePaths:
   - cspell-dictionary.txt
   - node_modules
   - package.json
-  - '**/i18n/**/*.json'

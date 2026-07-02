@@ -1,0 +1,23 @@
+$schema: https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+version: '0.2'
+dictionaryDefinitions:
+  - name: cspell-dictionary
+    path: ./cspell-dictionary.txt
+    addWords: true
+dictionaries:
+  - cspell-dictionary
+  - en_us
+  - en-gb
+  - en-common-misspellings
+  - companies
+  - docker
+  - html
+  - css
+  - typescript
+  - fonts
+ignorePaths:
+  - cspell.config.yaml
+  - '*.svg'
+  - cspell-dictionary.txt
+  - node_modules
+  - package.json
