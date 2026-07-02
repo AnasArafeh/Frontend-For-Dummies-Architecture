@@ -1,45 +1,25 @@
-// Section-level state: actions and action creators
-// This pattern works with useReducer. Redux/Zustand equivalents follow the same shape.
+// Action creators — (dispatch) => (payload) => dispatch({ type, payload })
 
-import { Device, DeviceStats } from '../../models/device.models';
+import { DashboardActionType, DashboardOverviewState } from './dashboard-overview.models';
 
-// --- Action Types ---
-export const DASHBOARD_ACTIONS = {
-  SET_DEVICES: 'SET_DEVICES',
-  SET_STATS: 'SET_STATS',
-  SET_LOADING: 'SET_LOADING',
-  SET_ERROR: 'SET_ERROR',
-  UPDATE_DEVICE_STATUS: 'UPDATE_DEVICE_STATUS',
-} as const;
+interface DashboardAction {
+  type: DashboardActionType;
+  payload: any;
+}
 
-// --- Action Interfaces ---
-export type DashboardAction =
-  | { type: typeof DASHBOARD_ACTIONS.SET_DEVICES; payload: Device[] }
-  | { type: typeof DASHBOARD_ACTIONS.SET_STATS; payload: DeviceStats }
-  | { type: typeof DASHBOARD_ACTIONS.SET_LOADING; payload: boolean }
-  | { type: typeof DASHBOARD_ACTIONS.SET_ERROR; payload: string | null }
-  | {
-      type: typeof DASHBOARD_ACTIONS.UPDATE_DEVICE_STATUS;
-      payload: { id: string; status: Device['status'] };
-    };
-
-// --- Action Creators ---
 export const dashboardActions = (dispatch: React.Dispatch<DashboardAction>) => ({
-  setDevices: (devices: Device[]) =>
-    dispatch({ type: DASHBOARD_ACTIONS.SET_DEVICES, payload: devices }),
+  setDevices: (devices: DashboardOverviewState['devices']) =>
+    dispatch({ type: DashboardActionType.SET_DEVICES, payload: devices }),
 
-  setStats: (stats: DeviceStats) =>
-    dispatch({ type: DASHBOARD_ACTIONS.SET_STATS, payload: stats }),
+  setStats: (stats: DashboardOverviewState['stats']) =>
+    dispatch({ type: DashboardActionType.SET_STATS, payload: stats }),
 
   setLoading: (loading: boolean) =>
-    dispatch({ type: DASHBOARD_ACTIONS.SET_LOADING, payload: loading }),
+    dispatch({ type: DashboardActionType.SET_LOADING, payload: loading }),
 
   setError: (error: string | null) =>
-    dispatch({ type: DASHBOARD_ACTIONS.SET_ERROR, payload: error }),
+    dispatch({ type: DashboardActionType.SET_ERROR, payload: error }),
 
-  updateDeviceStatus: (id: string, status: Device['status']) =>
-    dispatch({
-      type: DASHBOARD_ACTIONS.UPDATE_DEVICE_STATUS,
-      payload: { id, status },
-    }),
+  updateDeviceStatus: (id: string, status: 'online' | 'offline' | 'warning') =>
+    dispatch({ type: DashboardActionType.UPDATE_DEVICE_STATUS, payload: { id, status } }),
 });
