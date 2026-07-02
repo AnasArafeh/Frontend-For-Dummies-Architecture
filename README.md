@@ -3,6 +3,8 @@
 > [!NOTE]
 > **The sample code in this repo is AI-generated.** It demonstrates architectural patterns and structure, but is not guaranteed to be 100% accurate or production-ready. Use it as a reference for the FFD architecture, not as runnable application code.
 
+---
+
 > The architecture you can explain to a junior developer in 10 minutes (maybe more) by pointing at the screen.
 
 FFD is a **framework-agnostic frontend architecture** for structuring React, Next.js, Angular, and React Native applications. One rule drives everything: **organize your code the way the screen is organized.** Pages have sections. Sections have areas. Your code follows the same tree — always.
@@ -140,7 +142,7 @@ FFD does **not** prescribe a specific state library:
 | Framework | State Options |
 |---|---|
 | React | Context + useReducer, Redux, Zustand |
-| Angular | Services with RxJS BehaviorSubject, NgRx, Signal Store |
+| Angular | Signals + computed |
 | Next.js | Context + useReducer (same as React, with SSR hydration) |
 
 ### Provider Wrapping Pattern
@@ -206,7 +208,7 @@ export default function DeviceDashboardPage() {
 ├── state-management/                          → Section state (imported by Page + Section)
 │   └── dashboard-overview/
 │       ├── dashboard-overview.actions.ts
-│       └── dashboard-overview.reducer.tsx
+│       └── dashboard-overview.reducer.ts
 ├── sections/
 │   └── dashboard-overview/
 │       ├── dashboard-overview.section.tsx       → Section — Area container, consumes state
@@ -447,7 +449,7 @@ Working sample implementations of one module (Device Dashboard) in three framewo
 |---|---|
 | [React (Vite)](./examples/react-vite/) | Page→Section→Area with Context + useReducer, Delegate Component |
 | [Next.js (App Router)](./examples/nextjs-app-router/) | SSR Page with optional server prefetch |
-| [Angular](./examples/angular/) | Section service with RxJS BehaviorSubject |
+| [Angular](./examples/angular/) | Signals + computed state management |
 
 Each demonstrates the full hierarchy, a Delegate Component (table with injectable action buttons), and both shared and Area-specific API calls.
 
