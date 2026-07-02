@@ -181,9 +181,9 @@ The framework changes. The architecture doesn't. Each framework has its own idio
 
 ## When NOT to Use FFD
 
-If you have a single-page app with one feature and you're the only developer — you don't need this. Any structure works at that scale.
+If you have a single-page app with one feature and you're the only developer — you don't need this. Any structure works at that scale. But if your application starts to grow and get bigger, you really should consider applying an architecture before it spirals out of control.
 
-If your existing architecture isn't causing problems — don't change it. Architecture migrations are expensive. FFD is for teams that have already hit the wall.
+Already have a large codebase? FFD can be adopted **module by module.** You don't need a full rewrite. Create your first `(modules)/` folder, move one feature at a time, and let old code coexist outside the module structure. Enforce the hierarchy only for new modules. Over time, your codebase transitions without a single massive migration.
 
 ---
 
@@ -208,8 +208,5 @@ The complete architecture reference, working examples in React, Next.js, and Ang
 
 Read the full architecture doc (15 minutes), browse the examples for your framework, create your first module following the Page → Section → Area structure, and set up ESLint enforcement to protect module boundaries.
 
-Your team will thank you. Your PR reviewers will thank you. And the developer who joins two years from now and instantly understands where everything goes — they'll thank you most of all.
 
----
-
-*If you found this useful, share it with your team. The best architecture is the one everyone on your team actually follows.*
+*If you found this useful, share it with your team.*

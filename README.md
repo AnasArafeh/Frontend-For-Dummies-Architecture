@@ -68,8 +68,10 @@ FFD works with any frontend framework. Same architecture, different implementati
 - You're building with React, Next.js, Angular, or React Native
 
 **Maybe not, if:**
-- You have a single-page app with one feature
+- You have a single-page app with one feature (but if it grows, apply FFD before it spirals)
 - Your team is one person and you'll never onboard anyone
+
+**Adopting incrementally:** FFD works module by module. Move one feature into `(modules)/` at a time. Old code coexists. No full rewrite needed.
 - You have an existing architecture that isn't causing problems
 
 ## Getting Started
