@@ -1,5 +1,5 @@
 // Angular Section: Area container + data fetching. "The orchestrator."
-// Provides the state service at this level so Areas can inject it.
+// Provides the state service at this level so child Areas can inject it.
 
 import { Component, OnInit } from '@angular/core';
 import { DashboardOverviewService } from '../../state-management/dashboard-overview/dashboard-overview.service';
@@ -33,16 +33,9 @@ export class DashboardOverviewSection implements OnInit {
     this.devicesApi
       .fetchDevices()
       .then((res) => {
-        const devices = res.devices.map((d) => ({
-          id: d.id,
-          name: d.name,
-          status: d.status,
-        }));
-        this.service.setDevices(devices);
-        this.service.setStats({
-          total: devices.length,
-          online: devices.filter((d) => d.status === 'online').length,
-        });
+        this.service.setDevices(
+          res.devices.map((d) => ({ id: d.id, name: d.name, status: d.status })),
+        );
       })
       .catch((err) => this.service.setError(err.message))
       .finally(() => this.service.setLoading(false));

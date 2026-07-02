@@ -1,37 +1,34 @@
-// Section state service — Angular signal-based state (Angular 17+).
+// Section state — Angular signals, simple and flat.
 // Each Section provides its own instance via component `providers: []`.
 // Areas inject this service to read/write state. No @Input() needed.
 
 import { Injectable, signal, computed } from '@angular/core';
-import { DashboardState, initialDashboardState } from './dashboard-overview.models';
+import { Device } from './dashboard-overview.models';
 
 @Injectable()
 export class DashboardOverviewService {
-  private state = signal<DashboardState>(initialDashboardState);
+  devices = signal<Device[]>([]);
+  totalDevices = computed(() => this.devices().length);
+  onlineDevices = computed(() => this.devices().filter((d) => d.status === 'online').length);
 
-  readonly devices = computed(() => this.state().devices);
-  readonly stats = computed(() => this.state().stats);
-  readonly loading = computed(() => this.state().loading);
-  readonly error = computed(() => this.state().error);
+  loading = signal<boolean>(true);
+  error = signal<string | null>(null);
 
-  setDevices(data: DashboardState['devices']): void {
-    this.state.update((s) => ({ ...s, devices: data }));
+  setDevices(data: Device[]): void {
+    this.devices.set(data);
   }
 
-  setStats(data: DashboardState['stats']): void {
-    this.state.update((s) => ({ ...s, stats: data }));
+  setLoading(data: boolean): void {
+    this.loading.set(data);
   }
 
-  setLoading(data: DashboardState['loading']): void {
-    this.state.update((s) => ({ ...s, loading: data }));
+  setError(data: string | null): void {
+    this.error.set(data);
   }
 
-  setError(data: DashboardState['error']): void {
-    this.state.update((s) => ({ ...s, error: data }));
-  }
-
-  // Direct state access for Areas that need the full state
-  getState(): DashboardState {
-    return this.state();
+  reset(): void {
+    this.devices.set([]);
+    this.loading.set(true);
+    this.error.set(null);
   }
 }

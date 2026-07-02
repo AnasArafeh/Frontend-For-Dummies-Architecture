@@ -34,10 +34,11 @@ export class DeviceTableArea {
     this.devicesApi
       .updateDeviceStatus(id, 'toggled')
       .then(() => {
-        const devices = this.service.devices().map((dev) =>
-          dev.id === id ? { ...dev, status: 'offline' as const } : dev,
+        this.service.setDevices(
+          this.service.devices().map((dev) =>
+            dev.id === id ? { ...dev, status: 'offline' as const } : dev,
+          ),
         );
-        this.service.setDevices(devices);
       })
       .catch((err) => this.service.setError(err.message));
   }

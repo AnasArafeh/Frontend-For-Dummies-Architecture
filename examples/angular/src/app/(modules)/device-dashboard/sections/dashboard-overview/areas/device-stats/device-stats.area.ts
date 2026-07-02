@@ -8,9 +8,7 @@ import { DashboardOverviewService } from '../../../../state-management/dashboard
   standalone: true,
   template: `
     <h3>Stats</h3>
-    @if (service.stats(); as stats) {
-      <p>Total: {{ stats.total }} | Online: {{ stats.online }}</p>
-    }
+    <p>Total: {{ service.totalDevices() }} | Online: {{ service.onlineDevices() }}</p>
   `,
 })
 export class DeviceStatsArea {

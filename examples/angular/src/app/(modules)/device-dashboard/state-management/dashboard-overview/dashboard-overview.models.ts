@@ -1,18 +1,8 @@
-// State models — interfaces and state type for this Section.
-// Domain models (Device, DeviceStats) go in ../../models/.
+// State models — interfaces for this Section's state.
+// Domain models (Device) can live here or in ../../models/ when shared.
 
-import { Device, DeviceStats } from '../../models/device.models';
-
-export interface DashboardState {
-  devices: Device[];
-  stats: DeviceStats | null;
-  loading: boolean;
-  error: string | null;
+export interface Device {
+  id: string;
+  name: string;
+  status: 'online' | 'offline' | 'warning';
 }
-
-export const initialDashboardState: DashboardState = {
-  devices: [],
-  stats: null,
-  loading: true,
-  error: null,
-};
