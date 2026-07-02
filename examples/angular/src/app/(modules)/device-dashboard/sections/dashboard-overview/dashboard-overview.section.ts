@@ -16,7 +16,7 @@ import { DeviceTableArea } from './areas/device-table/device-table.area';
 })
 export class DashboardOverviewSection implements OnInit {
   constructor(
-    public service: DashboardOverviewService,
+    public dashboardOverviewStateManagement: DashboardOverviewService,
     private devicesApi: DevicesApiService,
   ) {}
 
@@ -24,11 +24,11 @@ export class DashboardOverviewSection implements OnInit {
     this.devicesApi
       .fetchDevices()
       .then((res) => {
-        this.service.devices.set(
+        this.dashboardOverviewStateManagement.devices.set(
           res.devices.map((d) => ({ id: d.id, name: d.name, status: d.status })),
         );
       })
-      .catch((err) => this.service.error.set(err.message))
-      .finally(() => this.service.loading.set(false));
+      .catch((err) => this.dashboardOverviewStateManagement.error.set(err.message))
+      .finally(() => this.dashboardOverviewStateManagement.loading.set(false));
   }
 }

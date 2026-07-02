@@ -9,5 +9,5 @@ import { DashboardOverviewService } from '../../../../state-management/dashboard
   templateUrl: './device-stats.area.html',
 })
 export class DeviceStatsArea {
-  service = inject(DashboardOverviewService);
+  dashboardOverviewStateManagement = inject(DashboardOverviewService);
 }

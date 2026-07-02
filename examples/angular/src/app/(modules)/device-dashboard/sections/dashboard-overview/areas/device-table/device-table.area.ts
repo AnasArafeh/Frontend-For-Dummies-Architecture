@@ -12,19 +12,19 @@ import { DeviceTableActions } from './delegate-components/device-table-actions.d
   templateUrl: './device-table.area.html',
 })
 export class DeviceTableArea {
-  service = inject(DashboardOverviewService);
+  dashboardOverviewStateManagement = inject(DashboardOverviewService);
   private devicesApi = inject(DevicesApiService);
 
   onToggle(id: string): void {
     this.devicesApi
       .updateDeviceStatus(id, 'toggled')
       .then(() => {
-        this.service.devices.set(
-          this.service.devices().map((dev) =>
+        this.dashboardOverviewStateManagement.devices.set(
+          this.dashboardOverviewStateManagement.devices().map((dev) =>
             dev.id === id ? { ...dev, status: 'offline' as const } : dev,
           ),
         );
       })
-      .catch((err) => this.service.error.set(err.message));
+      .catch((err) => this.dashboardOverviewStateManagement.error.set(err.message));
   }
 }

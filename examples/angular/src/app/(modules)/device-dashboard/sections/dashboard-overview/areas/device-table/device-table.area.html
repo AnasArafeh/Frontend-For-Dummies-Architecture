@@ -1,8 +1,8 @@
 <h3>Devices</h3>
-@if (service.devices().length === 0) {
+@if (dashboardOverviewStateManagement.devices().length === 0) {
   <p>No devices.</p>
 } @else {
-  @for (d of service.devices(); track d.id) {
+  @for (d of dashboardOverviewStateManagement.devices(); track d.id) {
     <p>
       {{ d.name }} — {{ d.status }}
       <app-device-table-actions
