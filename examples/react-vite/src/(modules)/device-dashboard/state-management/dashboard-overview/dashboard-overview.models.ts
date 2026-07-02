@@ -1,18 +1,17 @@
 // State models — interfaces, action types, and context type for this Section.
-// Only state-related types live here. Domain models (Device, DeviceStats) go in ../models/.
 
 import { Device, DeviceStats } from '../../models/device.models';
 
-// --- Action Type Constant ---
+// --- Action Type ---
 export const DASHBOARD_ACTION = 'DASHBOARD_ACTION';
 
-// --- Action Types Enum ---
-export enum DashboardActionType {
-  SET_DEVICES = 'SET_DEVICES',
-  SET_STATS = 'SET_STATS',
-  SET_LOADING = 'SET_LOADING',
-  SET_ERROR = 'SET_ERROR',
-  UPDATE_DEVICE_STATUS = 'UPDATE_DEVICE_STATUS',
+// --- Action Interface ---
+export interface IDashboardAction {
+  type: string;
+  payload: {
+    key: keyof DashboardOverviewState;
+    data: any;
+  };
 }
 
 // --- State Interface ---
@@ -24,11 +23,10 @@ export interface DashboardOverviewState {
 }
 
 // --- Context Interface ---
-export interface DashboardOverviewContext {
+export interface IDashboardContext {
   state: DashboardOverviewState;
   setDevices: (devices: Device[]) => void;
   setStats: (stats: DeviceStats) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
-  updateDeviceStatus: (id: string, status: Device['status']) => void;
 }

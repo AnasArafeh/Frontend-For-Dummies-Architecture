@@ -4,12 +4,12 @@ import { Device, DeviceStats } from '../../models/device.models';
 
 export const DASHBOARD_ACTION = 'DASHBOARD_ACTION';
 
-export enum DashboardActionType {
-  SET_DEVICES = 'SET_DEVICES',
-  SET_STATS = 'SET_STATS',
-  SET_LOADING = 'SET_LOADING',
-  SET_ERROR = 'SET_ERROR',
-  UPDATE_DEVICE_STATUS = 'UPDATE_DEVICE_STATUS',
+export interface IDashboardAction {
+  type: string;
+  payload: {
+    key: keyof DashboardOverviewState;
+    data: any;
+  };
 }
 
 export interface DashboardOverviewState {
@@ -19,11 +19,10 @@ export interface DashboardOverviewState {
   error: string | null;
 }
 
-export interface DashboardOverviewContext {
+export interface IDashboardContext {
   state: DashboardOverviewState;
   setDevices: (devices: Device[]) => void;
   setStats: (stats: DeviceStats) => void;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
-  updateDeviceStatus: (id: string, status: Device['status']) => void;
 }

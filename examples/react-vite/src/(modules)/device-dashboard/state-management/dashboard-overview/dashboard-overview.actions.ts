@@ -1,25 +1,17 @@
-// Action creators — (dispatch) => (payload) => dispatch({ type, payload })
+// Action creators — each wraps data in { key, data } payload.
 
-import { DashboardActionType, DashboardOverviewState } from './dashboard-overview.models';
+import { DASHBOARD_ACTION, IDashboardAction, DashboardOverviewState } from './dashboard-overview.models';
 
-interface DashboardAction {
-  type: DashboardActionType;
-  payload: any;
-}
+export const dashboardActions = (dispatch: React.Dispatch<IDashboardAction>) => ({
+  setDevices: (data: DashboardOverviewState['devices']) =>
+    dispatch({ type: DASHBOARD_ACTION, payload: { key: 'devices', data } }),
 
-export const dashboardActions = (dispatch: React.Dispatch<DashboardAction>) => ({
-  setDevices: (devices: DashboardOverviewState['devices']) =>
-    dispatch({ type: DashboardActionType.SET_DEVICES, payload: devices }),
+  setStats: (data: DashboardOverviewState['stats']) =>
+    dispatch({ type: DASHBOARD_ACTION, payload: { key: 'stats', data } }),
 
-  setStats: (stats: DashboardOverviewState['stats']) =>
-    dispatch({ type: DashboardActionType.SET_STATS, payload: stats }),
+  setLoading: (data: DashboardOverviewState['loading']) =>
+    dispatch({ type: DASHBOARD_ACTION, payload: { key: 'loading', data } }),
 
-  setLoading: (loading: boolean) =>
-    dispatch({ type: DashboardActionType.SET_LOADING, payload: loading }),
-
-  setError: (error: string | null) =>
-    dispatch({ type: DashboardActionType.SET_ERROR, payload: error }),
-
-  updateDeviceStatus: (id: string, status: 'online' | 'offline' | 'warning') =>
-    dispatch({ type: DashboardActionType.UPDATE_DEVICE_STATUS, payload: { id, status } }),
+  setError: (data: DashboardOverviewState['error']) =>
+    dispatch({ type: DASHBOARD_ACTION, payload: { key: 'error', data } }),
 });

@@ -1,7 +1,7 @@
 // Reducer + ContextCreator → exports Context and Provider
 
 import { ContextCreator } from '@/state-management/context-creator';
-import { DashboardActionType, DashboardOverviewState } from './dashboard-overview.models';
+import { DASHBOARD_ACTION, IDashboardAction, DashboardOverviewState } from './dashboard-overview.models';
 import { dashboardActions } from './dashboard-overview.actions';
 
 const initialState: DashboardOverviewState = {
@@ -11,22 +11,21 @@ const initialState: DashboardOverviewState = {
   error: null,
 };
 
-function dashboardReducer(state: DashboardOverviewState, action: { type: DashboardActionType; payload: any }): DashboardOverviewState {
+const setReducer = (state: DashboardOverviewState, action: IDashboardAction) => ({
+  ...state,
+  [action.payload.key]: action.payload.data,
+});
+
+export function DashboardReducer(state: DashboardOverviewState, action: IDashboardAction): DashboardOverviewState {
   switch (action.type) {
-    case DashboardActionType.SET_DEVICES:
-      return { ...state, devices: action.payload };
-    case DashboardActionType.SET_STATS:
-      return { ...state, stats: action.payload };
-    case DashboardActionType.SET_LOADING:
-      return { ...state, loading: action.payload };
-    case DashboardActionType.SET_ERROR:
-      return { ...state, error: action.payload };
+    case DASHBOARD_ACTION:
+      return setReducer(state, action);
     default:
       return state;
   }
 }
 
-const { Context, Provider } = ContextCreator(dashboardReducer, dashboardActions, initialState);
+const { Context, Provider } = ContextCreator(DashboardReducer, dashboardActions, initialState);
 
 export const DashboardOverviewContext = Context;
 export const DashboardOverviewProvider = Provider;
