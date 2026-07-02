@@ -184,6 +184,10 @@ The framework changes. The architecture doesn't. Each framework has its own idio
 
 If you have a single-page app with one feature and you're the only developer — you don't need this. Any structure works at that scale. But if your application starts to grow and get bigger, you really should consider applying an architecture before it spirals out of control.
 
+---
+
+## How to Adopt FFD
+
 Already have a large codebase? FFD can be adopted **module by module.** You don't need a full rewrite. Create your first `(modules)/` folder, move one feature at a time, and let old code coexist outside the module structure. Enforce the hierarchy only for new modules. Over time, your codebase transitions without a single massive migration.
 
 ---
