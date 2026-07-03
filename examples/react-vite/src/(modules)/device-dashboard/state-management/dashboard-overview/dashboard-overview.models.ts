@@ -1,6 +1,6 @@
 // State models — interfaces, action types, and context type for this Section.
 
-import { Device, DeviceStats } from '../../models/device.models';
+import { Device, DeviceStats } from '../../models/device-models';
 
 // --- Action Type ---
 export const DASHBOARD_ACTION = 'DASHBOARD_ACTION';

@@ -1,10 +1,8 @@
 'use client';
 
 import { Box, BoxProps } from '@mantine/core';
+import type { ReactNode } from 'react';
 
-// Theme wrapper — even a direct wrapper enforces single-source control.
-// Swap the library here and every component in the app updates.
-
-export function BaseBox(props: BoxProps) {
-  return <Box {...props} />;
+export function BaseBox({ children, ...props }: BoxProps & { children?: ReactNode; component?: any }) {
+  return <Box {...props}>{children}</Box>;
 }

@@ -3,7 +3,7 @@
 // Area: Business logic for device distribution chart.
 
 import { BaseBox } from '@/app/theme/components/base-box';
-import { useDashboardOverview } from '../../../state-management/dashboard-overview/dashboard-overview.reducer';
+import { useDashboardOverview } from '../../../../state-management/dashboard-overview/dashboard-overview.reducer';
 
 export function DeviceChartArea() {
   const { state } = useDashboardOverview();

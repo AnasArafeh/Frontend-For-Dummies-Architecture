@@ -10,6 +10,13 @@ import { DeviceTableActions } from './delegate-components/device-table-actions.d
 
 export function DeviceTableArea() {
   const { state, setError, setDevices } = useContext(DashboardOverviewContext);
+
+  const handleStatusChange = (id: string, status: 'online' | 'offline' | 'warning') => {
+    updateDeviceStatus(id, status)
+      .then(() => setDevices(state.devices.map((dev) => dev.id === id ? { ...dev, status } : dev)))
+      .catch((err) => setError(err.message));
+  };
+
   if (state.devices.length === 0) return <BaseBox>No devices.</BaseBox>;
 
   return (
@@ -18,11 +25,7 @@ export function DeviceTableArea() {
       {state.devices.map((d) => (
         <BaseBox component="p" key={d.id}>
           {d.name} — {d.status}{' '}
-          <DeviceTableActions device={d} onToggle={(id) => {
-            updateDeviceStatus(id, 'toggled')
-              .then(() => setDevices(state.devices.map((dev) => dev.id === id ? { ...dev, status: 'offline' as const } : dev)))
-              .catch((err) => setError(err.message));
-          }} />
+          <DeviceTableActions device={d} onStatusChange={handleStatusChange} />
         </BaseBox>
       ))}
     </BaseBox>

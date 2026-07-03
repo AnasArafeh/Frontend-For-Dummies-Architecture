@@ -1,13 +1,11 @@
-// Device domain models — scoped to this module
-
 export interface Device {
   id: string;
   name: string;
-  type: 'sensor' | 'gateway' | 'controller';
+  type?: 'sensor' | 'gateway' | 'controller';
   status: 'online' | 'offline' | 'warning';
-  batteryLevel: number;
-  lastSeen: string;
-  location: string;
+  batteryLevel?: number;
+  lastSeen?: string;
+  location?: string;
 }
 
 export interface DeviceStats {

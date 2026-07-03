@@ -403,26 +403,6 @@ A reviewer sees `device-stats.area.tsx` and knows instantly: *Area = business lo
 
 ---
 
-## Enforcement (ESLint)
-
-Module boundaries are enforced via ESLint `no-restricted-imports`. Each module gets a local config:
-
-```json
-{
-  "rules": {
-    "no-restricted-imports": ["error", {
-      "patterns": [
-        "(modules)/dashboard/*",
-        "(modules)/users/*"
-      ]
-    }]
-  }
-}
-```
-
-The `enforcement/generate-eslint-rules.js` script auto-generates these rules by scanning `(modules)/`.
-
----
 
 ## How to Adopt
 

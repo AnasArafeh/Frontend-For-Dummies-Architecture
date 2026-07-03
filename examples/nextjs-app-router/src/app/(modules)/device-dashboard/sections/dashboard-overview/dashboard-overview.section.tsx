@@ -20,7 +20,13 @@ export function DashboardOverview() {
       .then((res) => {
         const devices = res.devices.map((d) => ({ id: d.id, name: d.name, status: d.status }));
         setDevices(devices);
-        setStats({ total: devices.length, online: devices.filter((d) => d.status === 'online').length });
+        setStats({
+          total: devices.length,
+          online: devices.filter((d) => d.status === 'online').length,
+          offline: devices.filter((d) => d.status === 'offline').length,
+          warnings: devices.filter((d) => d.status === 'warning').length,
+          averageBattery: 0,
+        });
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));

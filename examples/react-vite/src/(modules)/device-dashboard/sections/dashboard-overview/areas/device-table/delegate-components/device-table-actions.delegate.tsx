@@ -1,8 +1,11 @@
-// Delegate Component: injectable action. Receives row data as props (allowed).
-
-import { Device } from '../../../../models/device.models';
 import { BaseButton } from '@/theme/components/base-button';
+import type { Device } from '@/(modules)/device-dashboard/models/device-models';
 
-export function DeviceTableActions({ device, onToggle }: { device: Device; onToggle: (id: string) => void }) {
+interface DeviceTableActionsProps {
+  device: Device;
+  onToggle: (id: string) => void;
+}
+
+export function DeviceTableActions({ device, onToggle }: DeviceTableActionsProps) {
   return <BaseButton onClick={() => onToggle(device.id)}>Toggle</BaseButton>;
 }

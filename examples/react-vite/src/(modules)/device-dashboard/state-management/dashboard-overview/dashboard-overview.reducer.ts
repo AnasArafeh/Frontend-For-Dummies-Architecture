@@ -1,5 +1,4 @@
-// Reducer + ContextCreator → exports Context and Provider
-
+import { useContext } from 'react';
 import { ContextCreator } from '@/state-management/context-creator';
 import { DASHBOARD_ACTION, IDashboardAction, DashboardOverviewState } from './dashboard-overview.models';
 import { dashboardActions } from './dashboard-overview.actions';
@@ -29,3 +28,7 @@ const { Context, Provider } = ContextCreator(DashboardReducer, dashboardActions,
 
 export const DashboardOverviewContext = Context;
 export const DashboardOverviewProvider = Provider;
+
+export function useDashboardOverview() {
+  return useContext(DashboardOverviewContext);
+}

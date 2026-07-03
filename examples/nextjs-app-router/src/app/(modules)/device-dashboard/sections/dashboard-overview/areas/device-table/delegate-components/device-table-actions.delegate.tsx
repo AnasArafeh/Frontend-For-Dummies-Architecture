@@ -1,10 +1,7 @@
 'use client';
 
-// Delegate Component: Injectable action button for device table rows.
-// Receives row data as PROPS from the table host — delegates allow props.
-
-import { Device } from '../../../../../models/device.models';
 import { BaseButton } from '@/app/theme/components/base-button';
+import type { Device } from '@/app/(modules)/device-dashboard/models/device-models';
 
 export interface DeviceTableActionsProps {
   device: Device;

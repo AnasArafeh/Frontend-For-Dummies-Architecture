@@ -18,7 +18,13 @@ export default async function DeviceDashboardPage() {
         initialData={{
           devices,
           loading: false,
-          stats: { total: devices.length, online: devices.filter((d) => d.status === 'online').length },
+          stats: {
+            total: devices.length,
+            online: devices.filter((d) => d.status === 'online').length,
+            offline: devices.filter((d) => d.status === 'offline').length,
+            warnings: devices.filter((d) => d.status === 'warning').length,
+            averageBattery: 0,
+          },
         }}
       >
         <DashboardOverview />
