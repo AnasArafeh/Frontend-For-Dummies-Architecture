@@ -13,10 +13,10 @@ export function DeviceChartArea() {
 
   return (
     <BaseBox>
-      <h3>Device Distribution</h3>
-      <p>Online: {((state.stats.online / total) * 100).toFixed(0)}%</p>
-      <p>Offline: {((state.stats.offline / total) * 100).toFixed(0)}%</p>
-      <p>Warning: {((state.stats.warnings / total) * 100).toFixed(0)}%</p>
+      <BaseBox component="h3">Device Distribution</BaseBox>
+      <BaseBox component="p">Online: {((state.stats.online / total) * 100).toFixed(0)}%</BaseBox>
+      <BaseBox component="p">Offline: {((state.stats.offline / total) * 100).toFixed(0)}%</BaseBox>
+      <BaseBox component="p">Warning: {((state.stats.warnings / total) * 100).toFixed(0)}%</BaseBox>
     </BaseBox>
   );
 }

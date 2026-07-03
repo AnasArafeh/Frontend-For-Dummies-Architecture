@@ -1,10 +1,5 @@
 # FFD — Frontend For Dummies Architecture
 
-> [!NOTE]
-> **The sample code in this repo is AI-generated.** It demonstrates architectural patterns and structure, but is not guaranteed to be 100% accurate or production-ready. Use it as a reference for the FFD architecture, not as runnable application code.
-
----
-
 > The architecture you can explain to a junior developer in 10 minutes (maybe more) by pointing at the screen.
 
 FFD is a **framework-agnostic frontend architecture** for structuring React, Next.js, Angular, and React Native applications. One rule drives everything: **organize your code the way the screen is organized.** Pages have sections. Sections have areas. Your code follows the same tree — always.

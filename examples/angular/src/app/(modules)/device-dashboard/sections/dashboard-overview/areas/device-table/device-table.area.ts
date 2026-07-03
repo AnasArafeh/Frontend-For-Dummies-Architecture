@@ -1,6 +1,7 @@
 // Area: Business logic. CAN call its own specific APIs.
 
 import { Component, inject } from '@angular/core';
+import { BaseBox } from '@/app/theme/components/base-box';
 import { DashboardOverviewStateManagement } from '../../../../state-management/dashboard-overview/dashboard-overview.state-management';
 import { DevicesApiService } from '@/app/services/devices/devices.api';
 import { DeviceTableActions } from './delegate-components/device-table-actions.delegate';
@@ -8,7 +9,7 @@ import { DeviceTableActions } from './delegate-components/device-table-actions.d
 @Component({
   selector: 'app-device-table-area',
   standalone: true,
-  imports: [DeviceTableActions],
+  imports: [BaseBox, DeviceTableActions],
   templateUrl: './device-table.area.html',
 })
 export class DeviceTableArea {

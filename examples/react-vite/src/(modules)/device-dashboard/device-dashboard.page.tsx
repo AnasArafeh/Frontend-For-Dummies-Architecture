@@ -8,7 +8,7 @@ import { DashboardOverview } from './sections/dashboard-overview/dashboard-overv
 export function DeviceDashboardPage() {
   return (
     <BaseBox>
-      <h1>Device Dashboard</h1>
+      <BaseBox component="h1">Device Dashboard</BaseBox>
       <DashboardOverviewProvider>
         <DashboardOverview />
       </DashboardOverviewProvider>

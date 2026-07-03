@@ -13,7 +13,7 @@ export default async function DeviceDashboardPage() {
 
   return (
     <BaseBox>
-      <h1>Device Dashboard</h1>
+      <BaseBox component="h1">Device Dashboard</BaseBox>
       <DashboardOverviewProvider
         initialData={{
           devices,

@@ -10,8 +10,8 @@ export function DeviceStatsArea() {
 
   return (
     <BaseBox>
-      <h3>Stats</h3>
-      <p>Total: {state.stats.total} | Online: {state.stats.online}</p>
+      <BaseBox component="h3">Stats</BaseBox>
+      <BaseBox component="p">Total: {state.stats.total} | Online: {state.stats.online}</BaseBox>
     </BaseBox>
   );
 }

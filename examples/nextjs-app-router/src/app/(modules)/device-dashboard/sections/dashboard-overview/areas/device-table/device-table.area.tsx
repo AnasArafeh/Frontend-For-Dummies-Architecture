@@ -14,16 +14,16 @@ export function DeviceTableArea() {
 
   return (
     <BaseBox>
-      <h3>Devices</h3>
+      <BaseBox component="h3">Devices</BaseBox>
       {state.devices.map((d) => (
-        <p key={d.id}>
+        <BaseBox component="p" key={d.id}>
           {d.name} — {d.status}{' '}
           <DeviceTableActions device={d} onToggle={(id) => {
             updateDeviceStatus(id, 'toggled')
               .then(() => setDevices(state.devices.map((dev) => dev.id === id ? { ...dev, status: 'offline' as const } : dev)))
               .catch((err) => setError(err.message));
           }} />
-        </p>
+        </BaseBox>
       ))}
     </BaseBox>
   );
