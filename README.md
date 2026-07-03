@@ -232,9 +232,11 @@ export default function DeviceDashboardPage() {
 ├── delegate-components/                      → Module-level delegate components
 └── components/                               → Module-level private components
 ```
-├── delegate-components/                  → Module-level delegate components
-└── components/                           → Module-level private components
+├── delegate-components/                      → Module-level delegate components
+└── components/                               → Module-level private components
 ```
+
+Each module can include whatever folder types it needs — `models/`, `helpers/`, `components/`, `hooks/`, `state-management/`, and more. Nothing is restricted.
 
 ### Container Module (No Page, Contains Only Nested Modules)
 

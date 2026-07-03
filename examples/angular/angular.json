@@ -21,7 +21,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {}
+          "options": {
+            "buildTarget": "ffd-angular-example:build"
+          }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",

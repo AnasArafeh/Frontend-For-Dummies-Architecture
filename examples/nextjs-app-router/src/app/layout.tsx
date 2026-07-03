@@ -1,7 +1,7 @@
-// Next.js Root Layout
-// Global providers, theme setup, and shared layout go here.
+import '@mantine/core/styles.layer.css';
 
 import type { Metadata } from 'next';
+import { MantineProvider } from '@mantine/core';
 
 export const metadata: Metadata = {
   title: 'FFD — Device Dashboard (Next.js)',
@@ -16,8 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* Global providers would wrap children here */}
-        {children}
+        <MantineProvider>
+          {children}
+        </MantineProvider>
       </body>
     </html>
   );

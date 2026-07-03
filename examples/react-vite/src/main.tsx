@@ -1,13 +1,14 @@
-// FFD React Vite Example — Entry Point
-// The App component renders the DeviceDashboardPage module.
-// In a real app, you'd wire up a router here.
+import '@mantine/core/styles.layer.css';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { MantineProvider } from '@mantine/core';
 import { App } from './App';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <MantineProvider>
+      <App />
+    </MantineProvider>
   </React.StrictMode>
 );
