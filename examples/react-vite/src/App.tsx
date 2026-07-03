@@ -3,7 +3,7 @@
 // For this example, we render the DeviceDashboard module directly.
 
 import { DeviceDashboardPage } from './(modules)/device-dashboard/device-dashboard.page';
-import { HeaderPage } from './(shared)/header/header.page';
+import { HeaderPage } from './(shared)/header/header';
 
 export function App() {
   return (

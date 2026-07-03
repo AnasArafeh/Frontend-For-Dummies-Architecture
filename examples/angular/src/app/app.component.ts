@@ -1,5 +1,3 @@
-// App Root — renders the DeviceDashboardPage module.
-
 import { Component } from '@angular/core';
 import { BaseBox } from './theme/components/base-box';
 import { DeviceDashboardPage } from './(modules)/device-dashboard/device-dashboard.page';
