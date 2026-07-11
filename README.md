@@ -134,9 +134,9 @@ Delegate Components and Private Components can live at **any level**: Module (sh
 
 ### State Management
 
-Each Section **owns its own state**. State is scoped to the Section. Communication between architectural layers happens **only** through state — never through props.
+Each Section **owns its own state**. State is scoped to the Section. Communication between architectural layers happens **only** through state — never through props. **If Sections share state**, lift to the module level.
 
-**If Sections share state**, lift state management to the module level. Each Section keeps its own state by default. Shared state is the exception, not the rule.
+For state management file organization and folder structure, see [State Management](#state-management).
 
 FFD does **not** prescribe a specific state library:
 
@@ -377,14 +377,7 @@ Every architectural layer file **MUST** end with its layer type. Pick **one** se
 
 Folders: kebab-case.
 
-**Co-located files** (styles, page-specific models) sit next to their layer file, sharing the same name prefix:
-```
-product-detail.page.tsx
-product-detail.page.scss          ← next to page, not in a subfolder
-product-detail.page.models.ts     ← page-specific models, not in models/
-product-gallery.area.tsx
-product-gallery.area.scss              ← next to area, not in a subfolder
-```
+**Co-located files** (styles, page-specific models) sit next to their layer file. See [Styling](#styling) for the full styling rules.
 
 A reviewer sees `product-gallery.area.tsx` and knows instantly: *Area = business logic. No props. Can call APIs.*
 
@@ -434,6 +427,8 @@ Both Delegates and Private Components can live at any level (Module, Section, Ar
 ---
 
 ## State Management
+
+State management lives at the Section level by default. Organize it under `state-management/`, one folder per Section.
 
 ### Section-Level State
 
