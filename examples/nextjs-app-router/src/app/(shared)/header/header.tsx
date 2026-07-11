@@ -2,7 +2,7 @@
 // Receives configuration via props at the Page boundary.
 // Receives global data via global context (current user, etc.).
 
-import { BaseBox } from '@/app/theme/components/base-box';
+import { BaseBox } from '@/theme/components/base-box/base-box';
 
 export interface HeaderPageProps {
   activeSection?: string;

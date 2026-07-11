@@ -1,0 +1,33 @@
+.cart-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cart-actions-add-to-cart {
+  width: 100%;
+  background: #ffd43b;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.cart-actions-add-to-cart-added {
+  background: #2b8a3e;
+}
+
+.cart-actions-buy-now {
+  width: 100%;
+  background: #ff9900;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,15 @@
+.product-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) 2fr 1fr;
+  gap: 24px;
+}
+
+.product-showcase-loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.product-showcase-error {
+  color: red;
+  padding: 40px;
+}

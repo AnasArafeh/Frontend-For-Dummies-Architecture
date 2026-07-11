@@ -1,0 +1,29 @@
+.base-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  th {
+    text-align: left;
+    padding: 8px 12px;
+    border-bottom: 2px solid #e0e0e0;
+    font-weight: 600;
+    color: #333;
+  }
+
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+  }
+
+  tr:hover td {
+    background: #fafafa;
+  }
+}
+
+.base-table-empty {
+  padding: 16px;
+  color: #888;
+  text-align: center;
+}
