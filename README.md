@@ -136,6 +136,8 @@ Delegate Components and Private Components can live at **any level**: Module (sh
 
 Each Section **owns its own state**. State is scoped to the Section. Communication between architectural layers happens **only** through state — never through props.
 
+**If Sections share state**, lift state management to the module level. Each Section keeps its own state by default. Shared state is the exception, not the rule.
+
 FFD does **not** prescribe a specific state library:
 
 | Framework | State Options |
@@ -143,32 +145,6 @@ FFD does **not** prescribe a specific state library:
 | React | Context + useReducer, Redux, Zustand |
 | Angular | Signals + computed |
 | Next.js | Context + useReducer (same as React, with SSR hydration) |
-
-### Provider Wrapping Pattern
-
-```tsx
-// Next.js (SSR) — Page is a server component, prefetching is optional
-export default async function DeviceDashboardPage() {
-  const devices = await fetchDevices(); // server-side (optional)
-
-  return (
-    <DashboardOverviewProvider initialData={{ devices }}>
-      <DashboardOverview />
-    </DashboardOverviewProvider>
-  );
-}
-```
-
-```tsx
-// React (CSR) — Page is purely a Section container, no data fetching
-export default function DeviceDashboardPage() {
-  return (
-    <DashboardOverviewProvider>
-      <DashboardOverview />
-    </DashboardOverviewProvider>
-  );
-}
-```
 
 ### API Call Placement
 
@@ -189,7 +165,7 @@ export default function DeviceDashboardPage() {
 | **Shared Components** | Yes | Regular reusable components in `components/`. |
 | **Everything else** | **No** | Architectural chain uses context/store only. |
 
-**Forbidden:** Page→Section (use provider initialData), Section→Area (use context/store), Area→Segment (use context/store).
+**Forbidden:** Page→Section, Section→Area, Area→Segment. Props are never used in the architectural chain.
 
 ---
 
@@ -198,44 +174,58 @@ export default function DeviceDashboardPage() {
 ### Leaf Module (Has a Page)
 
 ```
-(modules)/device-dashboard/
-├── device-dashboard.layout.tsx              → (optional) Module-level layout
-├── device-dashboard.layout.scss             → (optional) Layout styles, next to layout file
-├── device-dashboard.page.tsx                → Page (required) — Section container
-├── device-dashboard.page.scss               → (optional) Page styles, next to page file
-├── device-dashboard.page.models.ts          → (optional) Page-specific models
-├── state-management/                          → Section state (imported by Page + Section)
-│   └── dashboard-overview/
-│       ├── dashboard-overview.actions.ts
-│       └── dashboard-overview.reducer.ts
+(modules)/product-detail/
+├── product-detail.layout.tsx              → (optional) Module-level layout
+├── product-detail.layout.scss             → (optional) Layout styles, next to layout file
+├── product-detail.page.tsx                → Page (required) — Section container
+├── product-detail.page.scss               → (optional) Page styles, next to page file
+├── product-detail.page.models.ts          → (optional) Page-specific models
+├── state-management/                        → Section state (imported by Page + Section)
+│   ├── product-showcase/
+│   │   ├── product-showcase.actions.ts
+│   │   └── product-showcase.reducer.ts
+│   └── related-products/
+│       ├── related-products.actions.ts
+│       └── related-products.reducer.ts
 ├── sections/
-│   └── dashboard-overview/
-│       ├── dashboard-overview.section.tsx       → Section — Area container, consumes state
-│       ├── dashboard-overview.section.scss      → (optional) Section styles
-│       ├── dashboard-overview.section.models.ts → (optional) Section-specific models
+│   ├── product-showcase/
+│   │   ├── product-showcase.section.tsx       → Section — Area container, consumes state
+│   │   ├── product-showcase.section.scss      → (optional) Section styles
+│   │   ├── product-showcase.section.models.ts → (optional) Section-specific models
+│   │   ├── delegate-components/
+│   │   │   └── spec-row-actions/              → Delegate component (injectable)
+│   │   ├── components/
+│   │   └── areas/
+│   │       ├── product-gallery/
+│   │       │   ├── product-gallery.area.tsx
+│   │       │   ├── product-gallery.area.scss        → (optional) Area styles
+│   │       │   ├── product-gallery.area.models.ts   → (optional) Area-specific models
+│   │       │   ├── segments/
+│   │       │   ├── delegate-components/
+│   │       │   └── components/
+│   │       └── product-info/
+│   │           ├── product-info.area.tsx
+│   │           ├── product-info.area.scss
+│   │           └── delegate-components/
+│   └── related-products/
+│       ├── related-products.section.tsx       → Section — Area container, consumes state
+│       ├── related-products.section.scss      → (optional) Section styles
 │       ├── delegate-components/
 │       ├── components/
 │       └── areas/
-│           ├── device-stats/
-│           │   ├── device-stats.area.tsx
-│           │   ├── device-stats.area.scss        → (optional) Area styles
-│           │   ├── device-stats.area.models.ts   → (optional) Area-specific models
-│           │   ├── segments/
-│           │   ├── delegate-components/
-│           │   └── components/
-│           ├── device-table/
-│           │   ├── device-table.area.tsx
-│           │   ├── device-table.area.scss
-│           │   └── delegate-components/
-│           └── device-chart/
-│               ├── device-chart.area.tsx
-│               └── device-chart.area.scss
+│           └── product-purchase/
+│               ├── product-purchase.area.tsx
+│               ├── product-purchase.area.scss
+│               ├── segments/
+│               │   ├── cart-actions/
+│               │   ├── delivery-info/
+│               │   ├── price-summary/
+│               │   └── protection-plans/
+│               ├── delegate-components/
+│               └── components/
 ├── models/                                   → Module-level shared models
 ├── helpers/                                  → Module-specific utilities
 ├── store/                                    → Module-level constants
-├── delegate-components/                      → Module-level delegate components
-└── components/                               → Module-level private components
-```
 ├── delegate-components/                      → Module-level delegate components
 └── components/                               → Module-level private components
 ```
@@ -245,20 +235,20 @@ Each module can include whatever folder types it needs — `models/`, `helpers/`
 ### Container Module (No Page, Contains Only Nested Modules)
 
 ```
-(modules)/devices/
-├── devices.layout.tsx               → Shared layout for all nested modules
+(modules)/products/
+├── products.layout.tsx               → Shared layout for all nested modules
 ├── helpers/                         → Shared helpers for nested modules
 ├── models/                          → Shared models for nested modules
 ├── store/                           → Shared constants
 ├── delegate-components/
 ├── components/
 └── (modules)/                       → Nested modules (each HAS a Page)
-    ├── device-dashboard/
-    │   └── device-dashboard.page.tsx
-    ├── device-management/
-    │   └── device-management.page.tsx
-    └── device-verification/
-        └── device-verification.page.tsx
+    ├── product-detail/
+    │   └── product-detail.page.tsx
+    ├── product-compare/
+    │   └── product-compare.page.tsx
+    └── product-search/
+        └── product-search.page.tsx
 ```
 
 **Critical rule:** A module either has a Page (leaf module) **OR** contains `(modules)/` (container module). **Never both.**
@@ -361,12 +351,12 @@ Every architectural layer file **MUST** end with its layer type. Pick **one** se
 
 | Type | Pattern | Examples |
 |---|---|---|
-| Page | `<name>.page.tsx` | `device-dashboard.page.tsx` |
-| Section | `<name>.section.tsx` | `dashboard-overview.section.tsx` |
-| Area | `<name>.area.tsx` | `device-stats.area.tsx` |
-| Segment | `<name>.segment.tsx` | `device-chart.segment.tsx` |
-| Layout | `<name>.layout.tsx` | `devices.layout.tsx` |
-| Model | `<name>.models.ts` | `user.models.ts`, `device.models.ts` |
+| Page | `<name>.page.tsx` | `product-detail.page.tsx` |
+| Section | `<name>.section.tsx` | `product-showcase.section.tsx` |
+| Area | `<name>.area.tsx` | `product-gallery.area.tsx` |
+| Segment | `<name>.segment.tsx` | `cart-actions.segment.tsx` |
+| Layout | `<name>.layout.tsx` | `product-detail.layout.tsx` |
+| Model | `<name>.models.ts` | `user.models.ts`, `product.models.ts` |
 | Enum | `<name>.enums.ts` | `status.enums.ts` |
 | API | `<domain>.api.ts` | `users.api.ts`, `orders.api.ts` |
 | Helper | `<name>.helper.ts` | `date.helper.ts` |
@@ -375,12 +365,12 @@ Every architectural layer file **MUST** end with its layer type. Pick **one** se
 
 | Type | Pattern | Examples |
 |---|---|---|
-| Page | `<name>-page.tsx` | `device-dashboard-page.tsx` |
-| Section | `<name>-section.tsx` | `dashboard-overview-section.tsx` |
-| Area | `<name>-area.tsx` | `device-stats-area.tsx` |
-| Segment | `<name>-segment.tsx` | `device-chart-segment.tsx` |
-| Layout | `<name>-layout.tsx` | `devices-layout.tsx` |
-| Model | `<name>-models.ts` | `user-models.ts`, `device-models.ts` |
+| Page | `<name>-page.tsx` | `product-detail-page.tsx` |
+| Section | `<name>-section.tsx` | `product-showcase-section.tsx` |
+| Area | `<name>-area.tsx` | `product-gallery-area.tsx` |
+| Segment | `<name>-segment.tsx` | `cart-actions-segment.tsx` |
+| Layout | `<name>-layout.tsx` | `product-detail-layout.tsx` |
+| Model | `<name>-models.ts` | `user-models.ts`, `product-models.ts` |
 | Enum | `<name>-enums.ts` | `status-enums.ts` |
 | API | `<domain>-api.ts` | `users-api.ts`, `orders-api.ts` |
 | Helper | `<name>-helper.ts` | `date-helper.ts` |
@@ -389,14 +379,14 @@ Folders: kebab-case.
 
 **Co-located files** (styles, page-specific models) sit next to their layer file, sharing the same name prefix:
 ```
-device-dashboard.page.tsx
-device-dashboard.page.scss          ← next to page, not in a subfolder
-device-dashboard.page.models.ts     ← page-specific models, not in models/
-device-stats.area.tsx
-device-stats.area.scss              ← next to area, not in a subfolder
+product-detail.page.tsx
+product-detail.page.scss          ← next to page, not in a subfolder
+product-detail.page.models.ts     ← page-specific models, not in models/
+product-gallery.area.tsx
+product-gallery.area.scss              ← next to area, not in a subfolder
 ```
 
-A reviewer sees `device-stats.area.tsx` and knows instantly: *Area = business logic. No props. Can call APIs.*
+A reviewer sees `product-gallery.area.tsx` and knows instantly: *Area = business logic. No props. Can call APIs.*
 
 ---
 
@@ -416,6 +406,83 @@ FFD can be adopted **module by module.** No full rewrite needed. Create your fir
 
 ---
 
+## Delegate Components vs Private Components
+
+Both Delegates and Private Components can live at any level (Module, Section, Area), but they differ in HOW they're used:
+
+| Type | Folder | How it's used |
+|---|---|---|
+| **Private Component** | `components/` | Directly imported and rendered in JSX |
+| **Delegate Component** | `delegate-components/` | Passed as a **prop** to another component (table, menu, etc.) |
+
+```
+// Private Component — directly rendered in the parent's template
+<ProductList>
+  <ProductCard product={item} />   ← imported and used inline
+</ProductList>
+
+// Delegate Component — passed as a property to another component
+<DataTable
+  columns={columns}
+  rows={data}
+  rowActions={SpecRowActions}   ← passed as prop, called by DataTable with row data
+/>
+```
+
+**Delegate placement follows promotion rules:** used by 1 Area → area-level. Used by 2+ Areas → section-level. Used by 2+ Sections → module-level.
+
+---
+
+## State Management
+
+### Section-Level State
+
+Each Section **owns its own state management**. State is scoped to the Section:
+
+```
+state-management/
+├── product-showcase/          ← Section A state
+│   ├── product-showcase.models.ts
+│   ├── product-showcase.actions.ts
+│   └── product-showcase.reducer.ts
+└── related-products/          ← Section B state
+    ├── related-products.models.ts
+    ├── related-products.actions.ts
+    └── related-products.reducer.ts
+```
+
+**If Sections share state**, lift to module-level:
+
+```
+state-management/
+└── product-detail/           ← Module-level (shared by both Sections)
+```
+
+---
+
+## Store and Helpers
+
+| Folder | Purpose | Rule | Example |
+|---|---|---|---|
+| `store/` | Static data, mock data, constants | One file per domain — no monoliths | `product-data.store.ts`, `related-products-data.store.ts` |
+| `helpers/` | Pure functions: mappers, formatters, transformers | No side effects, no UI rendering | `product-mapper.helper.ts`, `date-formatter.helper.ts` |
+
+---
+
+## Styling
+
+- **Co-located stylesheet** — one stylesheet per component, same folder.
+- **CSS classes over inline styles** — inline styles are banned.
+- **Flat kebab-case class names** — `product-info-price-current`, never `product-info__price--current`.
+- **No BEM** — single hyphens only.
+
+```
+product-gallery.area.tsx
+product-gallery.area.css           ← next to the component, not in a subfolder
+```
+
+---
+
 ## What FFD Does NOT Cover
 
 FFD is scoped to **code organization.** It does not prescribe testing strategy, error handling patterns, performance optimization, or CI/CD. Add `__tests__/` wherever needed. Empty folders are never required.
@@ -424,7 +491,7 @@ FFD is scoped to **code organization.** It does not prescribe testing strategy, 
 
 ## Examples
 
-Working sample implementations of one module (Device Dashboard) in three frameworks:
+Working sample implementations of one module (Product Detail Page (Amazon-style)) in three frameworks:
 
 | Framework | Key Demo |
 |---|---|

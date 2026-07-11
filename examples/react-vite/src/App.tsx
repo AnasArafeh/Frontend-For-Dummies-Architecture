@@ -1,17 +1,22 @@
 // FFD React Vite Example — App Root
-// In a real app, this would contain routing, global providers, and layout.
-// For this example, we render the DeviceDashboard module directly.
+// Demonstrates both the original DeviceDashboard AND the new ProductDetail modules.
+// In a real app with routing, you'd lazy-load each module.
 
-import { DeviceDashboardPage } from './(modules)/device-dashboard/device-dashboard.page';
+import { MantineProvider } from '@mantine/core';
+import '@mantine/core/styles.css';
 import { HeaderPage } from './(shared)/header/header';
+import { ProductDetailPage } from './(modules)/product-detail/product-detail.page';
 
 export function App() {
   return (
-    <>
-      <HeaderPage activeSection="dashboard" />
+    <MantineProvider>
+      <HeaderPage
+        onSearch={q => console.log('Search:', q)}
+        cartCount={0}
+      />
       <main>
-        <DeviceDashboardPage />
+        <ProductDetailPage />
       </main>
-    </>
+    </MantineProvider>
   );
 }

@@ -1,0 +1,29 @@
+.product-purchase {
+  position: sticky;
+  top: 16px;
+}
+
+.product-purchase-divider {
+  border: none;
+  border-top: 1px solid #e9ecef;
+  margin: 12px 0;
+}
+
+.product-purchase-seller-heading {
+  margin: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.product-purchase-seller-info {
+  font-size: 12px;
+  color: #888;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #e9ecef;
+}
+
+.product-purchase-add-to-list {
+  font-size: 12px;
+  color: #228be6;
+  text-decoration: none;
+}
