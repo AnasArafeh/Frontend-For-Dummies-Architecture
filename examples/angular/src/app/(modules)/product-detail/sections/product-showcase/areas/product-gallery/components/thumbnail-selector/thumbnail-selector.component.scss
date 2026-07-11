@@ -1,0 +1,18 @@
+.thumbnail-btn {
+  border: 2px solid transparent;
+  border-radius: 4px;
+  padding: 2px;
+  cursor: pointer;
+  background: none;
+
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  &-selected {
+    border-color: #ff9900;
+  }
+}

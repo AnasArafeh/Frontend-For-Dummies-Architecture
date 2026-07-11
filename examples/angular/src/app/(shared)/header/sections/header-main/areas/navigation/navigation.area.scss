@@ -1,0 +1,53 @@
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+  line-height: 1.3;
+}
+
+.navigation-link-label {
+  font-size: 11px;
+  color: #ccc;
+}
+
+.navigation-link-value {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.navigation-cart {
+  text-decoration: none;
+  color: white;
+  font-size: 12px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.navigation-cart-icon {
+  font-size: 18px;
+  position: relative;
+}
+
+.navigation-cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: #ff9900;
+  color: #000;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

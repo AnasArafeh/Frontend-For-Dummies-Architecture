@@ -1,14 +1,11 @@
 import { Component } from '@angular/core';
-import { BaseBox } from './theme/components/base-box';
-import { DeviceDashboardPage } from './(modules)/device-dashboard/device-dashboard.page';
+import { HeaderPage } from './(shared)/header/header';
+import { ProductDetailPage } from './(modules)/product-detail/product-detail.page';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BaseBox, DeviceDashboardPage],
-  template: `
-    <app-base-box>FFD Angular Example</app-base-box>
-    <app-device-dashboard-page />
-  `,
+  imports: [HeaderPage, ProductDetailPage],
+  templateUrl: './app.component.html',
 })
 export class AppComponent {}

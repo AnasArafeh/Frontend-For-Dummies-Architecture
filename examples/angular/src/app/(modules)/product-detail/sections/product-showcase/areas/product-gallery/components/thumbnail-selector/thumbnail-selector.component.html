@@ -1,0 +1,7 @@
+<button
+  class="thumbnail-btn"
+  [class.thumbnail-btn-selected]="isSelected"
+  (click)="onSelect.emit(index)"
+>
+  <img [src]="image.thumbnail" [alt]="image.alt" />
+</button>

@@ -1,0 +1,19 @@
+<div class="navigation">
+  <a href="#" class="navigation-link">
+    <span class="navigation-link-label">Hello, sign in</span>
+    <span class="navigation-link-value">Account & Lists</span>
+  </a>
+  <a href="#" class="navigation-link">
+    <span class="navigation-link-label">Returns</span>
+    <span class="navigation-link-value">& Orders</span>
+  </a>
+  <a href="#" class="navigation-cart">
+    <span class="navigation-cart-icon">
+      🛒
+      @if (cartCount > 0) {
+        <span class="navigation-cart-badge">{{ cartCount }}</span>
+      }
+    </span>
+    <span class="navigation-link-value">Cart</span>
+  </a>
+</div>

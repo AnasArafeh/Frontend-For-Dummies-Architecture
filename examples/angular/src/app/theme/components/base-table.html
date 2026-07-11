@@ -1,0 +1,24 @@
+<table class="base-table">
+  <thead>
+    <tr>
+      @for (col of columns; track col.key) {
+        <th>{{ col.header }}</th>
+      }
+      @if (rowActions) {
+        <th>Actions</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for (row of rows; track rowKey(row)) {
+      <tr>
+        @for (col of columns; track col.key) {
+          <td>{{ col.render(row) }}</td>
+        }
+        @if (rowActions) {
+          <td><ng-container *ngComponentOutlet="rowActions; inputs: { row: row }" /></td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>

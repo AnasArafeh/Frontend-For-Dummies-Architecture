@@ -1,0 +1,6 @@
+<div class="header-main">
+  <app-logo-area />
+  <app-search-area (onSearch)="onSearch.emit($event)" />
+  <app-navigation-area [cartCount]="cartCount" />
+  <app-user-menu-area />
+</div>

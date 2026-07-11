@@ -1,18 +1,14 @@
-// Shared Feature: Header — follows Page→Section→Area structure.
-// Receives configuration via @Input() at the Page boundary.
-
 import { Component, Input } from '@angular/core';
+import { HeaderMainSection } from './sections/header-main/header-main.section';
 
 @Component({
   selector: 'app-header-page',
   standalone: true,
-  template: `
-    <header>
-      <nav>FFD Angular Example — {{ activeSection }}</nav>
-    </header>
-  `,
+  imports: [HeaderMainSection],
+  templateUrl: './header.html',
+  styleUrls: ['./header.scss'],
 })
 export class HeaderPage {
-  @Input() activeSection = 'home';
-  @Input() showSearch = true;
+  @Input() cartCount = 0;
+  @Input() onSearch = (query: string) => {};
 }

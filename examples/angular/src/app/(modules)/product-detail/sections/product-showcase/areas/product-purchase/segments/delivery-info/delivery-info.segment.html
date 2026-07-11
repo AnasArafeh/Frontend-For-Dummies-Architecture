@@ -1,0 +1,8 @@
+﻿@if (state.deliveryInfo(); as delivery) {
+  <div class="delivery-info">
+    <div class="delivery-info-free">FREE delivery <strong>{{ delivery.estimatedDate }}</strong></div>
+    <div class="delivery-info-fastest">Or fastest One-Day delivery <strong>{{ delivery.fastestOption }}</strong>. Order within <strong>{{ delivery.orderWithin }}</strong></div>
+    <div class="delivery-info-location">Delivering to <strong>{{ delivery.location }}</strong></div>
+    <div class="delivery-info-stock">In Stock</div>
+  </div>
+}

@@ -1,0 +1,28 @@
+@if (state.product(); as product) {
+  @if (state.priceInfo(); as priceInfo) {
+    @if (state.deliveryInfo(); as deliveryInfo) {
+      <div>
+        <app-base-card className="product-purchase">
+          <app-price-summary-segment />
+          <hr class="product-purchase-divider" />
+          <app-delivery-info-segment />
+          <hr class="product-purchase-divider" />
+          <app-cart-actions-segment />
+
+          @if (state.sellerInfo(); as sellerInfo) {
+            <div class="product-purchase-seller-info">
+              <p class="product-purchase-seller-heading">Shipper / Seller</p>
+              <div>Ships from: {{ sellerInfo.name }}</div>
+              <div>Sold by: {{ sellerInfo.name }}</div>
+            </div>
+          }
+
+          <hr class="product-purchase-divider" />
+          <app-protection-plans-segment />
+          <hr class="product-purchase-divider" />
+          <a href="#" class="product-purchase-add-to-list">Add to List</a>
+        </app-base-card>
+      </div>
+    }
+  }
+}

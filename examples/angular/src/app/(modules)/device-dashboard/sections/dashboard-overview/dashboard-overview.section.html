@@ -1,8 +1,0 @@
-@if (dashboardOverviewStateManagement.loading()) {
-  Loading...
-} @else if (dashboardOverviewStateManagement.error()) {
-  Error: {{ dashboardOverviewStateManagement.error() }}
-} @else {
-  <app-device-stats-area />
-  <app-device-table-area />
-}

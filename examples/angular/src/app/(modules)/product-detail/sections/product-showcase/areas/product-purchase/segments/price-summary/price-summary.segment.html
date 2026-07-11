@@ -1,0 +1,9 @@
+﻿@if (state.priceInfo(); as priceInfo) {
+  <div class="price-summary">
+    <span class="price-summary-current">{{ priceInfo.currency }} {{ priceInfo.currentPrice.toFixed(2) }}</span>
+    <span class="price-summary-original">{{ priceInfo.currency }} {{ priceInfo.originalPrice.toFixed(2) }}</span>
+    <div class="price-summary-savings">
+      You save {{ priceInfo.currency }} {{ (priceInfo.originalPrice - priceInfo.currentPrice).toFixed(2) }} ({{ priceInfo.savingsPercent }}%)
+    </div>
+  </div>
+}

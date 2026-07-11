@@ -1,0 +1,5 @@
+<div class="related-items">
+  @for (product of state.relatedProducts(); track product.id) {
+    <app-product-card [product]="product" />
+  }
+</div>

@@ -1,0 +1,11 @@
+@if (state.loading()) {
+  <div class="product-showcase-loading">Loading product...</div>
+} @else if (state.error()) {
+  <div class="product-showcase-error">{{ state.error() }}</div>
+} @else {
+  <div class="product-showcase">
+    <app-product-gallery-area />
+    <app-product-info-area />
+    <app-product-purchase-area />
+  </div>
+}

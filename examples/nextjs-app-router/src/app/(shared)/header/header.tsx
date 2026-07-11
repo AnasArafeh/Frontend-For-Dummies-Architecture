@@ -1,21 +1,18 @@
-// Shared Feature: Header — follows Page→Section→Area structure.
-// Receives configuration via props at the Page boundary.
-// Receives global data via global context (current user, etc.).
-
 import { BaseBox } from '@/theme/components/base-box/base-box';
+import { HeaderMainSection } from './sections/header-main/header-main.section';
+import styles from './header.module.scss';
 
 export interface HeaderPageProps {
-  activeSection?: string;
-  showSearch?: boolean;
+  onSearch?: (query: string) => void;
+  cartCount?: number;
 }
 
-export function HeaderPage({
-  activeSection = 'home',
-  showSearch = true,
-}: HeaderPageProps) {
+export function HeaderPage({ onSearch, cartCount = 0 }: HeaderPageProps) {
   return (
-    <BaseBox component="header">
-      <nav>FFD Next.js Example — {activeSection}</nav>
+    <BaseBox component="header" className={styles.header}>
+      <BaseBox className={styles['header-inner']}>
+        <HeaderMainSection onSearch={onSearch} cartCount={cartCount} />
+      </BaseBox>
     </BaseBox>
   );
 }

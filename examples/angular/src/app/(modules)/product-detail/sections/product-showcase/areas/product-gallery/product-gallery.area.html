@@ -1,0 +1,15 @@
+@if (state.product(); as product) {
+  <div class="product-gallery-main-image">
+    <img [src]="product.images[state.selectedImageIndex()].url" [alt]="product.images[state.selectedImageIndex()].alt" />
+  </div>
+  <div class="product-gallery-thumbnails">
+    @for (img of product.images; track img.url; let i = $index) {
+      <app-thumbnail-selector
+        [image]="img"
+        [index]="i"
+        [isSelected]="state.selectedImageIndex() === i"
+        (onSelect)="selectImage(i)"
+      />
+    }
+  </div>
+}

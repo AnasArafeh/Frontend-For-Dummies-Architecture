@@ -1,0 +1,9 @@
+﻿<div class="protection-plans">
+  <h4 class="protection-plans-heading">Add a Protection Plan:</h4>
+  @for (plan of state.protectionPlans(); track plan.id; let i = $index) {
+    <label class="protection-plans-option">
+      <input type="checkbox" [checked]="plan.selected" (change)="togglePlan(i)" />
+      {{ plan.name }} for {{ state.priceInfo()?.currency }} {{ plan.price.toFixed(2) }}
+    </label>
+  }
+</div>

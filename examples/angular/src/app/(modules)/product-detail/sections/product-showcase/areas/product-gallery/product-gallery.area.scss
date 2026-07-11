@@ -1,0 +1,12 @@
+.product-gallery-main-image {
+  img {
+    width: 100%;
+    border-radius: 8px;
+  }
+}
+
+.product-gallery-thumbnails {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}

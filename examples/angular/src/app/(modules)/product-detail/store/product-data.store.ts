@@ -1,0 +1,57 @@
+import type { ProductDTO } from '@/app/services/products/models/product-response.models';
+
+export const MOCK_PRODUCT: ProductDTO = {
+  id: 'B0BSH3KTY6',
+  title: 'ASUS ROG Strix G16 Gaming Laptop',
+  brand: 'ASUS',
+  store_url: '/stores/ASUS',
+  images: [
+    { url: 'https://picsum.photos/seed/laptop-main/600/600', alt: 'Front View', thumbnail: 'https://picsum.photos/seed/laptop-main/80/80' },
+    { url: 'https://picsum.photos/seed/laptop-side/600/600', alt: 'Side View', thumbnail: 'https://picsum.photos/seed/laptop-side/80/80' },
+    { url: 'https://picsum.photos/seed/laptop-keyboard/600/600', alt: 'Keyboard', thumbnail: 'https://picsum.photos/seed/laptop-keyboard/80/80' },
+    { url: 'https://picsum.photos/seed/laptop-ports/600/600', alt: 'Ports', thumbnail: 'https://picsum.photos/seed/laptop-ports/80/80' },
+    { url: 'https://picsum.photos/seed/laptop-screen/600/600', alt: 'Display', thumbnail: 'https://picsum.photos/seed/laptop-screen/80/80' },
+  ],
+  rating_score: 5.0,
+  rating_count: 1,
+  badges: [
+    { label: 'Electronic Payment Only' },
+    { label: '15 days Returnable' },
+    { label: 'Free Delivery' },
+    { label: 'Delivered by Amazon' },
+    { label: 'Secure transaction' },
+  ],
+  specs: [
+    { label: 'Brand', value: 'ASUS' },
+    { label: 'Model name', value: 'G614PM-G161W' },
+    { label: 'Screen size', value: '16 Inches' },
+    { label: 'Hard disk size', value: '1 TB' },
+    { label: 'CPU model', value: 'AMD Ryzen 9 8940HX' },
+    { label: 'RAM', value: '16 GB' },
+  ],
+  about: [
+    'Powered by AMD Ryzen 9 8940HX and NVIDIA RTX 5060',
+    '16-inch 240Hz display for immersive gaming',
+    'ROG Intelligent Cooling system',
+    '1TB SSD storage + 16GB DDR5 RAM',
+  ],
+  promotions: [
+    { code: 'AHBJUL20', description: '20% max AED 100 | Al Hilal MC Credit Cards.', terms: 'Terms apply' },
+  ],
+  style_name: 'Standard UAE Version',
+  price_current: 6249.60,
+  price_original: 6999.00,
+  price_savings_percent: 11,
+  currency: 'AED',
+  delivery_free: true,
+  delivery_estimated_date: 'Tomorrow',
+  delivery_fastest: 'Tomorrow 8 AM',
+  delivery_location: 'Dubai',
+  stock_status: 'in_stock',
+  order_within: '8 hrs 19 mins',
+  protection_plans: [
+    { id: 'plan-1', name: '1-Year Extended Warranty', price: 486.00 },
+  ],
+  seller_name: 'Amazon.ae',
+  seller_ships_from: 'Amazon',
+};

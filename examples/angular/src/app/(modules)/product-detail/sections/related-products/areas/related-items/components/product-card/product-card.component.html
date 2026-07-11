@@ -1,0 +1,13 @@
+<div class="product-card">
+  <img [src]="product.imageUrl" [alt]="product.title" class="product-card-image" />
+  <a href="#" class="product-card-title">{{ product.title }}</a>
+  <div class="product-card-rating">
+    <span class="product-card-stars">{{ getStars(product.rating.score) }}</span>
+    <span class="product-card-rating-count">{{ product.rating.count }}</span>
+  </div>
+  <div class="product-card-price">{{ product.currency }} {{ product.price.toFixed(2) }}</div>
+  <div class="product-card-delivery">{{ product.delivery }}</div>
+  @if (product.sponsored) {
+    <span class="product-card-sponsored">Sponsored</span>
+  }
+</div>

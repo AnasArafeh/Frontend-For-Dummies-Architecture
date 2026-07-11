@@ -1,0 +1,15 @@
+<form class="search" (submit)="handleSubmit($event)">
+  <select class="search-category-select" [(ngModel)]="category" name="category">
+    <option>All</option>
+    <option>Electronics</option>
+    <option>Computers</option>
+  </select>
+  <input
+    type="text"
+    class="search-input"
+    placeholder="Search Amazon.ae"
+    [(ngModel)]="query"
+    name="query"
+  />
+  <button type="submit" class="search-submit">🔍</button>
+</form>

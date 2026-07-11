@@ -1,0 +1,28 @@
+.related-products {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.related-products-heading {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.related-products-sponsored-label {
+  font-size: 12px;
+  color: #888;
+  font-weight: 400;
+  margin-left: 8px;
+}
+
+.related-products-loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.related-products-error {
+  color: red;
+  padding: 40px;
+}

@@ -1,0 +1,70 @@
+@if (state.product(); as product) {
+  @if (state.priceInfo(); as priceInfo) {
+    <h1 class="product-info-title">{{ product.title }}</h1>
+
+    <a [href]="product.storeUrl" class="product-info-brand-link">
+      Visit the {{ product.brand }} Store
+    </a>
+
+    <div class="product-info-rating">
+      <span class="product-info-stars">{{ getStars(product.rating.score) }}</span>
+      <span class="product-info-rating-text">
+        {{ product.rating.score }} ({{ product.rating.count }} rating{{ product.rating.count !== 1 ? 's' : '' }})
+      </span>
+    </div>
+
+    <hr class="product-info-divider" />
+
+    <div>
+      <span class="product-info-price-current">
+        -{{ priceInfo.savingsPercent }}% {{ priceInfo.currency }} {{ priceInfo.currentPrice.toFixed(2) }}
+        <span class="product-info-price-savings">with {{ priceInfo.savingsPercent }}% savings</span>
+      </span>
+      <div class="product-info-price-list">
+        List Price: {{ priceInfo.currency }} {{ priceInfo.originalPrice.toFixed(2) }}
+      </div>
+    </div>
+
+    @for (promo of product.promotions; track promo.code) {
+      <div class="product-info-promo">
+        <span class="product-info-promo-tag">Savings </span>
+        {{ promo.description }}
+        @if (promo.terms) {
+          <a href="#" class="product-info-promo-terms">Terms</a>
+        }
+      </div>
+    }
+
+    <div class="product-info-installment">
+      Buy with 0% installments and pay {{ priceInfo.currency }} {{ (priceInfo.currentPrice / 12).toFixed(2) }} for 12 months with select banks.
+      <app-base-button class="product-info-installment-btn">Payment Plans</app-base-button>
+    </div>
+
+    <div class="product-info-badges">
+      @for (badge of product.badges; track badge.label) {
+        <span class="product-info-badge">{{ badge.label }}</span>
+      }
+    </div>
+
+    <div class="product-info-style">Style: {{ product.style }}</div>
+
+    <div class="product-info-specs">
+      <h2 class="product-info-specs-heading">Product Specifications</h2>
+      <app-base-table
+        [columns]="specColumns"
+        [rows]="product.specs"
+        [rowKey]="specRowKey"
+        [rowActions]="specRowActions"
+      />
+    </div>
+
+    <div>
+      <h2 class="product-info-about-heading">About this item</h2>
+      <ul class="product-info-about-list">
+        @for (item of product.about; track $index) {
+          <li class="product-info-about-item">{{ item }}</li>
+        }
+      </ul>
+    </div>
+  }
+}

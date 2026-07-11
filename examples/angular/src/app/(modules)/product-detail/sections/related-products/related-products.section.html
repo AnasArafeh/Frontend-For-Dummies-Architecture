@@ -1,0 +1,13 @@
+@if (state.loading()) {
+  <div class="related-products-loading">Loading related products...</div>
+} @else if (state.error()) {
+  <div class="related-products-error">{{ state.error() }}</div>
+} @else if (state.relatedProducts().length > 0) {
+  <div class="related-products">
+    <h2 class="related-products-heading">
+      Products related to this item
+      <span class="related-products-sponsored-label">Sponsored</span>
+    </h2>
+    <app-related-items-area />
+  </div>
+}
